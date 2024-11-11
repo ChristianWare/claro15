@@ -3,6 +3,7 @@
 import styles from "./Nav.module.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import NavIcons from "../NavIcons/NavIcons";
 // import NavIcons from "../NavIcons/NavIcons";
 
 interface NavProps {
@@ -88,8 +89,8 @@ function Nav({ color = "" }: NavProps) {
               </li>
             ))}
             <div className={styles.navIconsContainer}>
-              {/* <NavIcons color={color} /> */}
-              Nav Icons Here
+              <NavIcons color={color} />
+              {/* Nav Icons Here */}
             </div>
           </ul>
           <span

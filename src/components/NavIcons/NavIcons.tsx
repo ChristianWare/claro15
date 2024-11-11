@@ -3,8 +3,8 @@
 
 import styles from "./NavIcons.module.css";
 import { useEffect, useState } from "react";
-import { useWixClient } from "@/hooks/useWixClient";
-import { useCartStore } from "@/hooks/useCartStore";
+// import { useWixClient } from "@/hooks/useWixClient";
+// import { useCartStore } from "@/hooks/useCartStore";
 import ProfileIcon from "../../../public/icons/profile.svg";
 import BasketIcon from "../../../public/icons/basket.svg";
 import Modal from "../Modal/Modal";
@@ -16,17 +16,17 @@ interface NavIconsProps {
 const NavIcons = ({ color }: NavIconsProps) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const wixClient = useWixClient();
+  // const wixClient = useWixClient();
 
   const handleCloseModal = () => {
     setIsCartOpen(false);
   };
 
-  const { cart, counter, getCart } = useCartStore();
+  // const { cart, counter, getCart } = useCartStore();
 
-  useEffect(() => {
-    getCart(wixClient);
-  }, [wixClient, getCart]);
+  // useEffect(() => {
+  //   getCart(wixClient);
+  // }, [wixClient, getCart]);
 
   return (
     <div className={`${styles.container} ${styles[color]}`}>
@@ -37,7 +37,8 @@ const NavIcons = ({ color }: NavIconsProps) => {
           onClick={() => setIsCartOpen((prev) => !prev)}
         />
         <div className={styles.counter}>
-          <p>{counter}</p>
+          {/* <p>{counter}</p> */}
+          <p>50</p>
         </div>
       </div>
       {isCartOpen && (
