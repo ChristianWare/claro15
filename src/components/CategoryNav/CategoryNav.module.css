@@ -1,0 +1,51 @@
+.container {
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+.bottom {
+  width: 100%;
+}
+
+.heading {
+  font-size: 2.4rem;
+  letter-spacing: -0.7px;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2rem;
+  width: 100%;
+}
+
+.link {
+  display: block;
+  font-size: 1.8rem;
+  letter-spacing: -0.4px;
+  border-bottom: 1px solid lightgray;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+.icon {
+  color: lightgray; /* Default icon color */
+}
+
+.activeIcon {
+  color: var(--black); /* Active icon color when path matches */
+}
