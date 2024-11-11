@@ -1,4 +1,3 @@
-import LayoutWrapper from "../LayoutWrapper";
 import styles from "./Hero.module.css";
 import Image from "next/image";
 import HeroImage from "../../../public/images/herov.jpg";
@@ -15,7 +14,6 @@ const Hero = () => {
           <Nav />
         </div>
         <Image src={HeroImage} alt='hero' fill className={styles.img} />
-        <LayoutWrapper>
           <div className={styles.content}>
             <div className={styles.actualContent}>
               <Eyebrow
@@ -30,7 +28,6 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </LayoutWrapper>
       </section>
     </div>
   );
