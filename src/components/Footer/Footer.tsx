@@ -103,11 +103,13 @@ const Footer = () => {
               {dataii.map((x) => (
                 <div key={x.id}>
                   <span className={styles.section}>{x.section}</span>
-                  {x.options.map((y) => (
-                    <div className={styles.iconBox} key={y.id}>
-                      {y.icon}
-                    </div>
-                  ))}
+                  <div className={styles.iconSection}>
+                    {x.options.map((y) => (
+                      <div className={styles.iconBox} key={y.id}>
+                        {y.icon}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

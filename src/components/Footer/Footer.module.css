@@ -88,6 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -98,10 +99,51 @@
 
 .iconSection {
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   color: var(--white);
+}
+
+@media screen and (max-width: 1068px) {
+  .topContent {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: -5rem;
+  }
+
+  .left {
+    align-items: center;
+    justify-content: center;
+    border-right: 0px;
+    border-bottom: 1px solid rgb(104, 84, 84);
+    padding-bottom: 5rem;
+    margin-bottom: 3rem;
+  }
+
+  .heading {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .bottom {
+    margin-bottom: 0rem;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .rightTop {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 7rem;
+  }
+
+  .inputContainer {
+    flex-direction: column;
+  }
 }
