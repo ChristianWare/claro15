@@ -1,6 +1,9 @@
 import Button from "../Button/Button";
 import styles from "../Footer/Footer.module.css";
 import LayoutWrapper from "../LayoutWrapper";
+import Instagram from "../../../public/icons/instagram.svg";
+import Facebook from "../../../public/icons/facebook.svg";
+import LinkedIn from "../../../public/icons/linkedin.svg";
 
 const data = [
   {
@@ -41,6 +44,27 @@ const data = [
   },
 ];
 
+const dataii = [
+  {
+    id: 3,
+    section: "Follow",
+    options: [
+      {
+        id: 3.1,
+        icon: <Instagram className={styles.icon} />,
+      },
+      {
+        id: 3.2,
+        icon: <Facebook className={styles.icon} />,
+      },
+      {
+        id: 3.3,
+        icon: <LinkedIn className={styles.icon} />,
+      },
+    ],
+  },
+];
+
 const Footer = () => {
   return (
     <footer className={styles.footer}>
@@ -60,7 +84,34 @@ const Footer = () => {
               <Button href='' text='Sign Up' btnType='input' />
             </div>
           </div>
-          <div className={styles.right}></div>
+          <div className={styles.right}>
+            <div className={styles.rightTop}>
+              {data.map((x) => (
+                <div className={styles.box} key={x.id}>
+                  <span className={styles.section}>{x.section}</span>
+                  <ul className={styles.optionsContainer}>
+                    {x.options.map((y) => (
+                      <li className={styles.option} key={y.id}>
+                        {y.title}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className={styles.rightBottom}>
+              {dataii.map((x) => (
+                <div key={x.id}>
+                  <span className={styles.section}>{x.section}</span>
+                  {x.options.map((y) => (
+                    <div className={styles.iconBox} key={y.id}>
+                      {y.icon}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div className={styles.bottom}>
           <p className={styles.small}>

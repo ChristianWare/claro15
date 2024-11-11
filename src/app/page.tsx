@@ -11,13 +11,13 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <Suspense fallback='Loading...'>
+      {/* <Suspense fallback='Loading...'>
         <FeaturedProducts />
       </Suspense>
       <Usp />
       <Uspii />
       <VideoUsp />
-      <TakeControl />
+      <TakeControl /> */}
       <FinalCTA />
     </main>
   );
