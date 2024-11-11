@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Libre_Baskerville } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import Footer from "@/components/Footer/Footer";
 
 const lb = Libre_Baskerville({
   subsets: ["latin"],
@@ -50,7 +51,8 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${lb.variable} ${pretendardMedium.variable} ${pretendardLight.variable}`}
       >
-      {children}
+        {children}
+        <Footer />
       </body>
     </html>
   );

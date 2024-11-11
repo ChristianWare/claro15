@@ -43,3 +43,9 @@
   border: 2px solid var(--black);
   color: var(--black);
 }
+
+.input {
+  background-color: var(--burgundyLight);
+  color: var(--white);
+  padding: 15px;
+}
