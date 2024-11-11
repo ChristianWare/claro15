@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.basketContainer {
+  position: relative;
+}
+
+.icon {
+  color: var(--white);
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+
+.counter {
+  position: absolute;
+  top: -25px;
+  left: 10px;
+  background-color: var(--umber);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding: 1px;
+}
+
+.counter p {
+  color: var(--white);
+  font-size: 12px;
+  z-index: 2;
+}
+
+.copy {
+  width: 100%;
+  display: block;
+  z-index: 9999;
+}
+
+.black {
+  color: var(--black);
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    gap: 3rem;
+  }
+
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

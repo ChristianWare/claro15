@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  font-size: 1.6rem;
+  opacity: 0.6;
+  font-weight: 500;
+  user-select: none;
+  gap: 2rem;
+  padding: 5px 15px;
+  width: fit-content;
+  transition: background-color 0.1s ease-in, color 0.1s ease-in;
+  line-height: 2rem;
+}
+
+.primary {
+  color: var(--purple);
+  padding: 0;
+}
+
+.white {
+  color: var(--white);
+  padding: 0;
+}
+
+.secondary {
+  font-family: var(--PerfectlyNinetiesItalic);
+  line-height: 100%;
+  color: var(--green);
+  background-color: var(--green3);
+  border: 1px solid var(--lightBlack);
+  padding: 5px 30px;
+  padding-bottom: 7px;
+}
+
+.secondary:hover {
+  background-color: var(--green3);
+  color: var(--green);
+}
