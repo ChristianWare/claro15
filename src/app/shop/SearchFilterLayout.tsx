@@ -50,6 +50,7 @@ export default function SearchFilterLayout({
     });
   }
 
+
   return (
     <LayoutWrapper>
       <main className={styles.main}>

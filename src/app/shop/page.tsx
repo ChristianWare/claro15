@@ -1,7 +1,11 @@
+import { getWixServerClient } from "@/lib/wix-client.server";
+import { getCollections } from "@/wix-api/collections";
+import SearchFilterLayout from "./SearchFilterLayout";
+import PageIntro from "@/components/PageIntro/PageIntro";
+import Shop from "../../../public/images/shop.jpg";
 import { ProductsSort } from "@/wix-api/products";
 import { Metadata } from "next";
 import { Suspense } from "react";
-// import styles from "./ShopPage.module.css";
 import ProductResults from "@/components/ProductResults/ProductResults";
 
 interface PageProps {
@@ -34,18 +38,31 @@ export default async function Page({ searchParams }: PageProps) {
     sort,
   } = await Promise.resolve(searchParams);
 
+  // Fetch collections
+  const collections = await getCollections(await getWixServerClient());
+
   return (
     <main>
-      <Suspense fallback='Loading...' key={`${q}-${page}`}>
-        <ProductResults
-          q={q}
-          page={parseInt(page)}
-          collectionIds={collectionIds}
-          priceMin={price_min ? parseInt(price_min) : undefined}
-          priceMax={price_max ? parseInt(price_max) : undefined}
-          sort={sort as ProductsSort}
-        />
-      </Suspense>
+      {/* PageIntro component for the banner */}
+      <PageIntro
+        src={Shop}
+        eyebrow="Experience the CLARO difference you've been hearing about"
+        text='Products'
+      />
+
+      {/* SearchFilterLayout wrapping ProductResults */}
+      <SearchFilterLayout collections={collections}>
+        <Suspense fallback='Loading...' key={`${q}-${page}`}>
+          <ProductResults
+            q={q}
+            page={parseInt(page)}
+            collectionIds={collectionIds}
+            priceMin={price_min ? parseInt(price_min) : undefined}
+            priceMax={price_max ? parseInt(price_max) : undefined}
+            sort={sort as ProductsSort}
+          />
+        </Suspense>
+      </SearchFilterLayout>
     </main>
   );
 }
