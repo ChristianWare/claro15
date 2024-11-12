@@ -53,10 +53,6 @@ function Nav({ color = "" }: NavProps) {
       text: "About Us",
       href: "/about",
     },
-    {
-      text: "Locations",
-      href: "/locations",
-    },
 
     {
       text: "Support",
