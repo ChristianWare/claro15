@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4rem;
+  padding: 2.5rem 1.25rem;
+}
+
+.aside {
+  position: sticky;
+  top: 2.5rem;
+  width: 16rem;
+}
+
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
