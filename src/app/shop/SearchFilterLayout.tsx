@@ -1,11 +1,12 @@
+// SearchFilterLayout.tsx
+
 "use client";
 
-import { ProductsSort } from "@/wix-api/products";
 import { collections } from "@wix/stores";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useOptimistic, useState, useTransition } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import styles from "./SearchFilterLayout.module.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import { useEffect, useState, useTransition } from "react";
 
 interface SearchFilterLayoutProps {
   collections: collections.Collection[];
@@ -16,75 +17,79 @@ export default function SearchFilterLayout({
   collections,
   children,
 }: SearchFilterLayoutProps) {
+  const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [optimisticFilters, setOptimisticFilters] = useOptimistic({
+  // Log the pathname to verify it
+  console.log("Current pathname:", pathname);
+
+  // Check if we're on a specific product page (e.g., /shop/[slug])
+  const isProductPage =
+    pathname?.startsWith("/shop/") && pathname.split("/").length === 3;
+
+  // Optimistic filter state
+  const [filters, setFilters] = useState({
     collection: searchParams.getAll("collection"),
-    price_min: searchParams.get("price_min") || undefined,
-    price_max: searchParams.get("price_max") || undefined,
-    sort: searchParams.get("sort") || undefined,
+    price_min: searchParams.get("price_min") || "",
+    price_max: searchParams.get("price_max") || "",
+    sort: searchParams.get("sort") || "last_updated",
   });
 
   const [isPending, startTransition] = useTransition();
 
-  function updateFilters(updates: Partial<typeof optimisticFilters>) {
-    const newState = { ...optimisticFilters, ...updates };
+  function updateFilters(updatedValues: Partial<typeof filters>) {
+    const newFilters = { ...filters, ...updatedValues };
+    setFilters(newFilters);
+
+    // Update URL search params
     const newSearchParams = new URLSearchParams(searchParams);
-
-    Object.entries(newState).forEach(([key, value]) => {
+    Object.entries(newFilters).forEach(([key, value]) => {
       newSearchParams.delete(key);
-
       if (Array.isArray(value)) {
-        value.forEach((v) => newSearchParams.append(key, v));
+        value.forEach((val) => newSearchParams.append(key, val));
       } else if (value) {
         newSearchParams.set(key, value);
       }
     });
 
-    newSearchParams.delete("page");
-
     startTransition(() => {
-      setOptimisticFilters(newState);
-      router.push(`?${newSearchParams.toString()}`);
+      router.push(`${pathname}?${newSearchParams.toString()}`);
     });
   }
-
 
   return (
     <LayoutWrapper>
       <main className={styles.main}>
-        <aside
-          className={styles.aside}
-          data-pending={isPending ? "" : undefined}
-        >
-          <CollectionsFilter
-            collections={collections}
-            selectedCollectionIds={optimisticFilters.collection}
-            updateCollectionIds={(collectionIds) =>
-              updateFilters({ collection: collectionIds })
-            }
-          />
-          <PriceFilter
-            minDefaultInput={optimisticFilters.price_min}
-            maxDefaultInput={optimisticFilters.price_max}
-            updatePriceRange={(priceMin, priceMax) =>
-              updateFilters({
-                price_min: priceMin,
-                price_max: priceMax,
-              })
-            }
-          />
-        </aside>
-        <div>
-          <div>
-            <SortFilter
-              sort={optimisticFilters.sort}
-              updateSort={(sort) => updateFilters({ sort })}
-            />
-          </div>
-          {children}
-        </div>
+        {!isProductPage && (
+          <>
+           
+            <aside
+              className={styles.aside}
+              data-pending={isPending ? "" : undefined}
+            >
+              <CollectionsFilter
+                collections={collections}
+                selectedCollectionIds={filters.collection}
+                updateCollectionIds={(collectionIds) =>
+                  updateFilters({ collection: collectionIds })
+                }
+              />
+              <PriceFilter
+                minDefaultInput={filters.price_min}
+                maxDefaultInput={filters.price_max}
+                updatePriceRange={(min, max) =>
+                  updateFilters({ price_min: min, price_max: max })
+                }
+              />
+              <SortFilter
+                sort={filters.sort}
+                updateSort={(sort) => updateFilters({ sort })}
+              />
+            </aside>
+          </>
+        )}
+        <div>{children}</div>
       </main>
     </LayoutWrapper>
   );
@@ -196,7 +201,7 @@ function PriceFilter({
 
 interface SortFilterProps {
   sort: string | undefined;
-  updateSort: (value: ProductsSort) => void;
+  updateSort: (value: string) => void;
 }
 
 function SortFilter({ sort, updateSort }: SortFilterProps) {
@@ -205,7 +210,7 @@ function SortFilter({ sort, updateSort }: SortFilterProps) {
       <label>Sort by: </label>
       <select
         value={sort || "last_updated"}
-        onChange={(e) => updateSort(e.target.value as ProductsSort)}
+        onChange={(e) => updateSort(e.target.value)}
       >
         <option value='last_updated'>Newest</option>
         <option value='price_asc'>Price (Low to high)</option>
