@@ -46,6 +46,10 @@ function Nav({ color = "" }: NavProps) {
       href: "/shop",
     },
     {
+      text: "collections",
+      href: "/collections",
+    },
+    {
       text: "About Us",
       href: "/about",
     },

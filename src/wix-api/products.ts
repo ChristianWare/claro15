@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { WIX_STORES_APP_ID } from "@/lib/constants";
 import { WixClient } from "@/lib/wix-client.base";
 import { cache } from "react";

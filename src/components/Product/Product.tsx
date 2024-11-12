@@ -5,20 +5,19 @@ import Link from "next/link";
 // import { media as wixMedia } from "@wix/sdk";
 import WixImage from "../WixImage";
 import { formatCurrency } from "@/lib/utils";
+import styles from "./Product.module.css";
+import DOMPurify from "isomorphic-dompurify";
 
 interface ProductProps {
   product: products.Product;
 }
-
-import styles from "./Product.module.css";
-import DOMPurify from "isomorphic-dompurify";
 
 export default function Product({ product }: ProductProps) {
   const mainImage = product.media?.mainMedia?.image;
 
   return (
     <article className={styles.container}>
-      <Link href={`/products/${product.slug}`} className={styles.card}>
+      <Link href={`/shop/${product.slug}`} className={styles.card}>
         <WixImage
           mediaIdentifier={mainImage?.url}
           alt={mainImage?.altText}
