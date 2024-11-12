@@ -9,7 +9,6 @@ import styles from "./ShopPage.module.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import PageIntro from "@/components/PageIntro/PageIntro";
 import Shop from "../../../public/images/shop.jpg";
-import CategoryNav from "@/components/CategoryNav/CategoryNav";
 
 interface PageProps {
   searchParams: {
@@ -101,7 +100,8 @@ async function ProductResults({
     <section>
       <div className={styles.content}>
         {/* Category navigation with the active category highlighted */}
-        <CategoryNav currentCollectionIds={collectionIds || []} />
+        {/* <CategoryNav currentCollectionIds={collectionIds || []} /> */}
+        <div></div>
         <div className={styles.products}>
           {products.items.map((product) => (
             <Product key={product._id} product={product} />

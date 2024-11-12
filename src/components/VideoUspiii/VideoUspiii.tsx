@@ -31,7 +31,7 @@ const VideoUspiii = () => {
           loop
           className={styles.video}
         >
-          <source src='./video/upsiii.mp4' />
+          <source src='./video/uspiii.mp4' />
         </video>
         <div className={styles.imgOverlay}></div>
         <div className={styles.contentChildren}>
