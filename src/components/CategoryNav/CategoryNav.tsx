@@ -22,16 +22,7 @@ const CategoryNav = async () => {
         <div className={styles.bottom}>
           <h6 className={styles.link}>
             <span className={styles.span}>
-              <Circle
-                width={10}
-                height={10}
-                className={styles.activeIcon}
-                // className={
-                //   pathname === x.href
-                //     ? `${styles.icon} ${styles.activeIcon}`
-                //     : styles.icon
-                // }
-              />
+              <Circle width={10} height={10} className={styles.activeIcon} />
             </span>{" "}
             <Link href='/shop'>All</Link>
           </h6>
@@ -43,11 +34,6 @@ const CategoryNav = async () => {
                     width={10}
                     height={10}
                     className={styles.activeIcon}
-                    // className={
-                    //   pathname === x.href
-                    //     ? `${styles.icon} ${styles.activeIcon}`
-                    //     : styles.icon
-                    // }
                   />
                 </span>{" "}
                 <Link href={`/shop/${x.slug}`}>{x.name}</Link>

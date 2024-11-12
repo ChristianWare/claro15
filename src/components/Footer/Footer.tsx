@@ -4,6 +4,7 @@ import LayoutWrapper from "../LayoutWrapper";
 import Instagram from "../../../public/icons/instagram.svg";
 import Facebook from "../../../public/icons/facebook.svg";
 import LinkedIn from "../../../public/icons/linkedin.svg";
+import Youtube from "../../../public/icons/youtube.svg";
 
 const data = [
   {
@@ -60,6 +61,10 @@ const dataii = [
       {
         id: 3.3,
         icon: <LinkedIn className={styles.icon} />,
+      },
+      {
+        id: 3.4,
+        icon: <Youtube className={styles.icon} />,
       },
     ],
   },
