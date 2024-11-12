@@ -1,18 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import styles from "./CategoryNav.module.css";
-// import { usePathname } from "next/navigation";
 import Circle from "../../../public/icons/circle.svg";
 import { getCollections } from "@/wix-api/collections";
 import { getWixServerClient } from "@/lib/wix-client.server";
 
-const CategoryNav = async () => {
-  // const pathname = usePathname(); // Get the current path
+interface CategoryNavProps {
+  currentCollectionIds?: string[]; // Optional array of current collection IDs
+}
 
-  const wixClient = await getWixServerClient(); // Await the async function here
-
+const CategoryNav = async ({ currentCollectionIds }: CategoryNavProps) => {
+  const wixClient = await getWixServerClient();
   const [collections] = await Promise.all([getCollections(wixClient)]);
 
   return (
@@ -22,7 +22,7 @@ const CategoryNav = async () => {
         <div className={styles.bottom}>
           <h6 className={styles.link}>
             <span className={styles.span}>
-              <Circle width={10} height={10} className={styles.activeIcon} />
+              <Circle width={10} height={10} className={styles.icon} />
             </span>{" "}
             <Link href='/shop'>All</Link>
           </h6>
@@ -33,7 +33,11 @@ const CategoryNav = async () => {
                   <Circle
                     width={10}
                     height={10}
-                    className={styles.activeIcon}
+                    className={
+                      currentCollectionIds?.includes(x.id)
+                        ? styles.activeIcon
+                        : styles.icon
+                    }
                   />
                 </span>{" "}
                 <Link href={`/shop/${x.slug}`}>{x.name}</Link>

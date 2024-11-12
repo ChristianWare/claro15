@@ -1,6 +1,5 @@
 // import PaginationBar from "@/components/PaginationBar";
 import Product from "@/components/Product/Product";
-// import { Skeleton } from "@/components/ui/skeleton";
 import { getWixServerClient } from "@/lib/wix-client.server";
 import { ProductsSort, queryProducts } from "@/wix-api/products";
 import { Metadata } from "next";
@@ -16,7 +15,7 @@ interface PageProps {
   searchParams: {
     q?: string;
     page?: string;
-    collection?: string[];
+    collection?: string[]; // Categories filter
     price_min?: string;
     price_max?: string;
     sort?: string;
@@ -26,7 +25,7 @@ interface PageProps {
 export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const { q } = await Promise.resolve(searchParams); 
+  const { q } = await Promise.resolve(searchParams);
   return {
     title: q ? `Results for "${q}"` : "Products",
   };
@@ -46,11 +45,11 @@ export default async function Page({ searchParams }: PageProps) {
 
   return (
     <main>
-        <PageIntro
-          src={Shop}
-          eyebrow="Experience the CLARO difference you've been hearing about"
-          text={title}
-        />
+      <PageIntro
+        src={Shop}
+        eyebrow="Experience the CLARO difference you've been hearing about"
+        text={title}
+      />
       <LayoutWrapper>
         <Suspense fallback='Loading...' key={`${q}-${page}`}>
           <ProductResults
@@ -100,19 +99,16 @@ async function ProductResults({
 
   return (
     <section>
-        <div className={styles.content}>
-          {/* <p className={styles.resultsHeading}>
-            {products.totalCount}{" "}
-            {products.totalCount === 1 ? "product" : "products"} found
-          </p> */}
-          <CategoryNav />
-          <div className={styles.products}>
-            {products.items.map((product) => (
-              <Product key={product._id} product={product} />
-            ))}
-          </div>
-          {/* <PaginationBar currentPage={page} totalPages={products.totalPages || 1} /> */}
+      <div className={styles.content}>
+        {/* Category navigation with the active category highlighted */}
+        <CategoryNav currentCollectionIds={collectionIds || []} />
+        <div className={styles.products}>
+          {products.items.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
         </div>
+        {/* <PaginationBar currentPage={page} totalPages={products.totalPages || 1} /> */}
+      </div>
     </section>
   );
 }
