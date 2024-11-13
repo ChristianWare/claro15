@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
+import styles from "./ShoppingCartButton.module.css";
 import {
   useCart,
   useRemoveCartItem,
@@ -9,10 +10,10 @@ import {
 import { useCartCheckout } from "@/hooks/checkout";
 import { currentCart } from "@wix/ecom";
 import { useState } from "react";
-import styles from "./ShoppingCartButton.module.css";
 import Modal from "../Modal/Modal";
 import Link from "next/link";
 import WixImage from "../WixImage";
+import Cart from "../../../public/icons/cart.svg";
 
 interface ShoppingCartButtonProps {
   initialData: currentCart.Cart | null;
@@ -24,7 +25,7 @@ export default function ShoppingCartButton({
   const [sheetOpen, setSheetOpen] = useState(false);
 
   const cartQuery = useCart(initialData);
-  const { startCheckoutFlow, pending } = useCartCheckout(); // Integrate useCartCheckout here
+  const { startCheckoutFlow, pending } = useCartCheckout();
 
   const totalQuantity =
     cartQuery.data?.lineItems?.reduce(
@@ -44,10 +45,12 @@ export default function ShoppingCartButton({
     <>
       <div className='relative'>
         <button onClick={() => setSheetOpen(true)} className={styles.navParent}>
-          🛒
-          <span className={styles.quantity}>
-            {totalQuantity < 10 ? totalQuantity : "9+"}
-          </span>
+          <div className={styles.cartParent}>
+            <Cart className={styles.icon} />
+            <span className={styles.counter}>
+              {totalQuantity < 10 ? totalQuantity : "9+"}
+            </span>
+          </div>
         </button>
         <Modal isOpen={sheetOpen} onClose={() => setSheetOpen(false)}>
           Your cart{" "}

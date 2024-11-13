@@ -1,0 +1,32 @@
+.icon {
+  width: 25px;
+  height: 25px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.cartParent {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  top: -25px;
+  left: 20px;
+  background-color: var(--umber);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  padding: 1px;
+}
+
+.counter {
+  color: var(--white);
+  font-size: 12px;
+  z-index: 2;
+  font-family: var(--pretendard);
+}

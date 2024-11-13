@@ -4,6 +4,7 @@ import styles from "./UserButton.module.css";
 import useAuth from "@/hooks/auth";
 import { members } from "@wix/members";
 import Link from "next/link";
+import Person from "../../../public/icons/person.svg";
 
 interface UserButtonProps {
   loggedInMember: members.Member | null;
@@ -39,7 +40,7 @@ export default function UserButton({ loggedInMember }: UserButtonProps) {
           onClick={() => login()}
           className='rounded-md bg-orange-400 p-2 text-white'
         >
-          Login
+          <Person className={styles.icon} />
         </button>
       )}
     </div>
