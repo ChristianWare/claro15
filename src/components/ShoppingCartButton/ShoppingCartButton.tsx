@@ -44,7 +44,7 @@ export default function ShoppingCartButton({
   return (
     <>
       <div className='relative'>
-        <button onClick={() => setSheetOpen(true)} className={styles.navParent}>
+        <button onClick={() => setSheetOpen(true)} className={styles.button}>
           <div className={styles.cartParent}>
             <Cart className={styles.icon} />
             <span className={styles.counter}>

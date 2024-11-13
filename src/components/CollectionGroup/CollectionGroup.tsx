@@ -26,7 +26,6 @@ export default async function CollectionGroup() {
                     className={styles.img}
                   />
                 ) : (
-                  // Fallback if no banner image exists
                   <div className={styles.noImage}>No Image Available</div>
                 )}
                 <p className={styles.text}>{collection.name}</p>
