@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image, { StaticImageData } from "next/image";
-import Nav from "../Nav/Nav";
+// import Nav from "../Nav/Nav";
 import styles from "./PageIntro.module.css";
 import Eyebrow from "../Eyebrow/Eyebrow";
 
@@ -19,7 +19,7 @@ const PageIntro = ({ eyebrow, text, copy, src = "" }: Props) => {
       <section className={styles.container}>
         <div className={styles.imgOverlay}></div>
         <div className={styles.navContainer}>
-          <Nav />
+          {/* <Nav /> */}
         </div>
         {src && <Image src={src} alt='hero' fill className={styles.img} />}
         <div className={styles.content}>

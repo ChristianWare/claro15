@@ -49,8 +49,6 @@ export default async function Page({ params }: PageProps) {
   return (
     <main className='py10 mx-auto max-w-7xl space-y-10 px-5'>
       <ProductDetails product={product} />
-    
-     
     </main>
   );
 }

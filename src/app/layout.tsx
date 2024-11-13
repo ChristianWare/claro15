@@ -3,6 +3,10 @@ import { Libre_Baskerville } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
+import ReactQueryProvider from "./ReactQueryProvider";
+import { Toaster } from "react-hot-toast";
+
+
 
 const lb = Libre_Baskerville({
   subsets: ["latin"],
@@ -51,8 +55,25 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${lb.variable} ${pretendardMedium.variable} ${pretendardLight.variable}`}
       >
-        {children}
-        <Footer />
+        {/* {children}
+        <Footer /> */}
+        <ReactQueryProvider>
+          <Toaster
+            position='top-center'
+            toastOptions={{
+              className: "toastFont",
+              duration: 6000,
+              style: {
+                border: "2px solid #295f4e",
+                borderRadius: "50px",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+              },
+            }}
+          />
+          {children}
+          <Footer />
+        </ReactQueryProvider>
       </body>
     </html>
   );

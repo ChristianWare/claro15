@@ -1,17 +1,19 @@
 import styles from "./Hero.module.css";
 import Image from "next/image";
 import HeroImage from "../../../public/images/herov.jpg";
-import Nav from "../Nav/Nav";
+// import Nav from "../Nav/Nav";
 import Eyebrow from "../Eyebrow/Eyebrow";
 import Button from "../Button/Button";
+import Navbar from "../Navbar";
 
 const Hero = () => {
   return (
     <div className={styles.parent}>
+          <Navbar />
       <section className={styles.container}>
         <div className={styles.imgOverlay}></div>
         <div className={styles.navContainer}>
-          <Nav />
+          {/* <Nav /> */}
         </div>
         <Image src={HeroImage} alt='hero' fill className={styles.img} />
           <div className={styles.content}>

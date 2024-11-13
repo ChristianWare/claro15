@@ -1,6 +1,6 @@
+import styles from "./AddToCartButton.module.css";
+
 import { useAdditemToCart } from "@/hooks/cart";
-// import { wixBrowserClient } from "@/lib/wix-client.browser";
-// import { addToCart } from "@/wix-api/cart";
 import { products } from "@wix/stores";
 
 interface AddToCartButtonProps {
@@ -27,7 +27,7 @@ export default function AddToCartButton({
         })
       }
       {...props}
-      className="flex items-center justify-center rounded-full bg-red-500 text-xs text-white p-3"
+      className={styles.btn}
     >
       Add To Cart
     </button>

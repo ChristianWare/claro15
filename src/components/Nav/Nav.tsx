@@ -1,44 +1,55 @@
-"use client";
+// "use client";
 
 import styles from "./Nav.module.css";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Link from "next/link";
 import NavIcons from "../NavIcons/NavIcons";
-// import NavIcons from "../NavIcons/NavIcons";
+import { getCart } from "@/wix-api/cart";
+import { getWixServerClient } from "@/lib/wix-client.server";
+import ShoppingCartButton from "./ShoppingCartButton";
+import UserButton from "./UserButton";
+import { getLoggedInMember } from "@/wix-api/members";
 
 interface NavProps {
   color?: string;
 }
 
-function Nav({ color = "" }: NavProps) {
-  const [isOpen, setIsOpen] = useState(false);
+// function Nav({ color = "" }: NavProps) {
+export default async function Nav({ color = "" }: NavProps) {
+  const wixClient = await getWixServerClient(); // Await the async function here
 
-  const openMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const [cart, loggedInMember, collections] = await Promise.all([
+    getCart(wixClient),
+    getLoggedInMember(wixClient),
+  ]);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-    if (body) {
-      if (window.innerWidth <= 968 && isOpen) {
-        body.style.overflow = "hidden";
-      } else {
-        body.style.overflow = "auto";
-      }
-    }
+  // const openMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
-    const handleResize = () => {
-      setIsOpen(false);
-      window.addEventListener("resize", handleResize);
-    };
+  // useEffect(() => {
+  //   const body = document.querySelector("body");
+  //   if (body) {
+  //     if (window.innerWidth <= 968 && isOpen) {
+  //       body.style.overflow = "hidden";
+  //     } else {
+  //       body.style.overflow = "auto";
+  //     }
+  //   }
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (body) {
-        body.style.overflow = "auto";
-      }
-    };
-  }, [isOpen]);
+  //   const handleResize = () => {
+  //     setIsOpen(false);
+  //     window.addEventListener("resize", handleResize);
+  //   };
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //     if (body) {
+  //       body.style.overflow = "auto";
+  //     }
+  //   };
+  // }, [isOpen]);
 
   const navItems = [
     {
@@ -68,17 +79,18 @@ function Nav({ color = "" }: NavProps) {
             CLARO
           </Link>
           <ul
-            className={
-              isOpen === false
-                ? styles.navMenu
-                : `${styles.navMenu} ${styles.active}`
-            }
+            // className={
+            //   isOpen === false
+            //     ? styles.navMenu
+            //     : `${styles.navMenu} ${styles.active}`
+            // }
+            className={styles.navMenu}
           >
             {navItems.map((navItem, index) => (
               <li
                 key={index}
                 className={`${styles.navItem} ${styles[color]}`}
-                onClick={() => setIsOpen(false)}
+                // onClick={() => setIsOpen(false)}
               >
                 <Link
                   href={navItem.href}
@@ -94,12 +106,13 @@ function Nav({ color = "" }: NavProps) {
             </div>
           </ul>
           <span
-            className={
-              isOpen === false
-                ? styles.hamburger
-                : `${styles.hamburger} ${styles.active}`
-            }
-            onClick={openMenu}
+            // className={
+            //   isOpen === false
+            //     ? styles.hamburger
+            //     : `${styles.hamburger} ${styles.active}`
+            // }
+            // onClick={openMenu}
+            className={styles.hamburger}
           >
             <span className={styles.whiteBar}></span>
             <span className={styles.whiteBar}></span>
@@ -107,9 +120,6 @@ function Nav({ color = "" }: NavProps) {
           </span>
         </nav>
       </header>
-      <div className={styles.greenTop}></div>
     </>
   );
 }
-
-export default Nav;

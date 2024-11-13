@@ -7,6 +7,8 @@ import { checkInStock, findVariant } from "@/lib/utils";
 import ProductMedia from "../ProductMedia/ProductMedia";
 import ProductPrice from "../ProductPrice/ProductPrice";
 import ProductOptions from "../ProductOptions/ProductOptions";
+import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
+// import BuyNowButton from "@/components/BuyNowButton/BuyNowButton";
 
 interface ProductDetailsProps {
   product: products.Product;
@@ -75,6 +77,28 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               </span>
             )}
         </div>
+        {inStock ? (
+          <div className='flex items-center gap-2.5'>
+            <AddToCartButton
+              product={product}
+              selectedOptions={selectedOptions}
+              quantity={quantity}
+            />
+            {/* <BuyNowButton
+              product={product}
+              selectedOptions={selectedOptions}
+              quantity={quantity}
+            /> */}
+          </div>
+        ) : (
+          <button className='flex items-center justify-center rounded-full bg-red-100 p-3 text-xs text-black'>
+            Out of stock
+          </button>
+          // <BackInStockNotificationButton
+          //   product={product}
+          //   selectedOptions={selectedOptions}
+          // />
+        )}
         {!!product.additionalInfoSections?.length && (
           <>
             <p>Additional product information</p>
