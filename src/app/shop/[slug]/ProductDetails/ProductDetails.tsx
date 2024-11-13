@@ -1,53 +1,63 @@
-'use client'
+"use client";
 
-import styles from './ProductDetails.module.css'
+import styles from "./ProductDetails.module.css";
 import { products } from "@wix/stores";
 import { useState } from "react";
 import { checkInStock, findVariant } from "@/lib/utils";
-import ProductMedia from '../ProductMedia/ProductMedia';
+import ProductMedia from "../ProductMedia/ProductMedia";
+import ProductPrice from "../ProductPrice/ProductPrice";
+import ProductOptions from "../ProductOptions/ProductOptions";
 
 interface ProductDetailsProps {
   product: products.Product;
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-      const [quantity, setQunatity] = useState(1);
+  const [quantity, setQunatity] = useState(1);
 
-      const [selectedOptions, setSelectedOptions] = useState<
-        Record<string, string>
-      >(
-        product.productOptions
-          ?.map((option) => ({
-            [option.name || ""]: option.choices?.[0].description || "",
-          }))
-          ?.reduce((acc, curr) => ({ ...acc, ...curr }), {}) || {}
-      );
+  const [selectedOptions, setSelectedOptions] = useState<
+    Record<string, string>
+  >(
+    product.productOptions
+      ?.map((option) => ({
+        [option.name || ""]: option.choices?.[0].description || "",
+      }))
+      ?.reduce((acc, curr) => ({ ...acc, ...curr }), {}) || {}
+  );
 
-      const selectedVariant = findVariant(product, selectedOptions);
+  const selectedVariant = findVariant(product, selectedOptions);
 
-      const inStock = checkInStock(product, selectedOptions);
+  const inStock = checkInStock(product, selectedOptions);
 
-      const availableQuantity =
-        selectedVariant?.stock?.quantity ?? product.stock?.quantity;
+  const availableQuantity =
+    selectedVariant?.stock?.quantity ?? product.stock?.quantity;
 
-      const availableQuantityExceeded =
-        !!availableQuantity && quantity > availableQuantity;
-
+  const availableQuantityExceeded =
+    !!availableQuantity && quantity > availableQuantity;
 
   return (
     <div className={styles.container}>
-      <ProductMedia media={product.media?.items} />
+      <div className={styles.left}>
+        <ProductMedia media={product.media?.items} />
+      </div>
+      <div className={styles.right}>
+        <span className={styles.breadcrumbs}>Shop • {product.ribbon}</span>
+        <h1 className={styles.heading}>{product.name}</h1>
+        {/* {product.brand && <p>Brand: {product.brand}</p>}
+        {product.ribbon && <p>Ribbon: {product.ribbon}</p>} */}
+        <ProductPrice product={product} selectedVariant={selectedVariant} />
+        <ProductOptions
+          product={product}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
 
-      <h1 className='text-3xl font-bold lg:text-4xl'>{product.name}</h1>
-      {product.brand && <p>Brand: {product.brand}</p>}
-      {product.ribbon && <p>Ribbon: {product.ribbon}</p>}
-      {product.description && (
-        <div
-          dangerouslySetInnerHTML={{ __html: product.description }}
-          className='prose'
-        ></div>
-      )}
-      <div className='5 space-y-1'>
+        {product.description && (
+          <div
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            className='prose'
+          ></div>
+        )}
         <label htmlFor='quantity'>Quantity</label>
         <div className='gap2-.5 flex items-center'>
           <input

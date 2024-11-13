@@ -52,12 +52,6 @@ span {
   color: var(--black);
 }
 
-/* .span {
-  line-height: 100%;
-  letter-spacing: -0.04em;
-  font-family: var(--PerfectlyNinetiesItalic);
-} */
-
 h1 {
   font-size: 8rem;
   line-height: 100%;

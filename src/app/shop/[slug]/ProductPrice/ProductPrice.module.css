@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  gap: 8px;
+}
+
+.price {
+  /* Normal price styling */
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.discountedPrice {
+  color: red;
+  font-weight: bold;
+}

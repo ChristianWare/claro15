@@ -1,15 +1,38 @@
 .container {
   display: flex;
   flex-direction: row-reverse;
-  align-items: flex-start;
-  justify-content: flex-start;
   gap: 2rem;
 }
 
-.img {
+.img,
+.imgii {
   object-fit: contain;
   background-color: var(--gray);
   border-radius: 15px;
   width: 100%;
   height: 100%;
+  cursor: pointer;
+}
+
+.imgii {
+  border-radius: 10px;
+}
+
+.mediaPreviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 1295px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .mediaPreviewContainer {
+    flex-direction: row;
+  }
 }

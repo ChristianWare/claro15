@@ -2,9 +2,9 @@
 
 "use client";
 
+import styles from "./SearchFilterLayout.module.css";
 import { collections } from "@wix/stores";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import styles from "./SearchFilterLayout.module.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { useEffect, useState, useTransition } from "react";
 

@@ -25,14 +25,14 @@ export default function ProductMedia({ media }: ProductMediaProps) {
         <WixImage
           mediaIdentifier={selectedImage.url}
           alt={selectedImage.altText}
-          width={1000}
-          height={1000}
+          width={500}
+          height={500}
+          //   scaleToFill={false}
           className={styles.img}
         />
-      ) : 
-      selectedVideo?.url ? (
-        <div className='flex size-full items-center bg-black'>
-          <video autoPlay loop className='size-full'>
+      ) : selectedVideo?.url ? (
+        <div>
+          <video autoPlay loop>
             <source
               src={selectedVideo.url}
               type={`video/${selectedVideo.format}`}
@@ -41,7 +41,7 @@ export default function ProductMedia({ media }: ProductMediaProps) {
         </div>
       ) : null}
       {media.length > 1 && (
-        <div className='flex flex-wrap gap-5'>
+        <div className={styles.mediaPreviewContainer}>
           {media.map((mediaItem) => (
             <MediaPreview
               key={mediaItem._id}
@@ -85,6 +85,7 @@ function MediaPreview({ mediaItem, isSelected, onSelect }: MediaPreviewProps) {
         width={100}
         height={100}
         onMouseEnter={onSelect}
+        className={styles.imgii}
       />
       {resolvedThumbnailUrl && (
         <span className='absolute left-1/2 top-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/40'>
