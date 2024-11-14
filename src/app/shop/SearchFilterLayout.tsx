@@ -191,7 +191,6 @@ function CollectionsFilter({
   );
 }
 
-
 interface PriceFilterProps {
   minDefaultInput: string | undefined;
   maxDefaultInput: string | undefined;
@@ -217,28 +216,35 @@ function PriceFilter({
   }
 
   return (
-    <div className='space-y-3'>
-      <div className='font-bold'>Price range</div>
-      <form onSubmit={onSubmit}>
+    <div className={styles.priceRangeBox}>
+      <h3 className={styles.priceRangeTitle}>Price Range :</h3>
+      <form onSubmit={onSubmit} className={styles.priceRange}>
         <input
           type='number'
           name='min'
-          placeholder='Min'
+          placeholder='Min Price'
           value={minInput}
           onChange={(e) => setMinInput(e.target.value || "")}
+          className={styles.priceInput}
         />
-        <span>-</span>
+        {/* <span>-</span> */}
         <input
           type='number'
           name='max'
-          placeholder='Max'
+          placeholder='Max Price'
           value={maxInput}
           onChange={(e) => setMaxInput(e.target.value || "")}
+          className={styles.priceInput}
         />
-        <button type='submit'>Go</button>
+        <button type='submit' className={styles.goBtn}>
+          Go
+        </button>
       </form>
       {(!!minDefaultInput || !!maxDefaultInput) && (
-        <button onClick={() => updatePriceRange(undefined, undefined)}>
+        <button
+          onClick={() => updatePriceRange(undefined, undefined)}
+          className={styles.clearBtn}
+        >
           Clear
         </button>
       )}

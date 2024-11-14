@@ -3,7 +3,6 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 4rem;
-  /* padding: 2.5rem 1.25rem; */
   padding: 0rem;
   margin-top: 15rem;
 }
@@ -11,7 +10,6 @@
 .aside {
   position: sticky;
   top: 2.5rem;
-  width: 16rem;
 }
 
 .filterContainer {
@@ -79,4 +77,50 @@
 .collectionName {
   font-size: 1.8rem;
   font-family: var(--pretendard);
+}
+
+.priceRangeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.priceRangeTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.priceRange {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.priceInput {
+  border: 1px solid darkgray;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.goBtn,
+.clearBtn {
+  background-color: darkgray;
+  width: 100%;
+  color: var(--white);
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.goBtn {
+  margin-top: 1rem;
+}
+
+.clearBtn {
+  background-color: var(--black);
 }
