@@ -37,5 +37,10 @@
 }
 
 .black {
-  color: var(--black)
+  color: var(--black);
 }
+
+.modalContent {
+  z-index: 10000000000;
+position: relative; /* Change from static to relative */
+    display: block;}

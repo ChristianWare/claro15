@@ -55,62 +55,67 @@ export default function ShoppingCartButton({
           </div>
         </button>
         <Modal isOpen={sheetOpen} onClose={() => setSheetOpen(false)}>
-          Your cart{" "}
-          <span className='text-base'>
-            ({totalQuantity} {totalQuantity === 1 ? "item" : "items"})
-          </span>
-          <br />
-          <br />
-          <br />
-          <div className='flex grow flex-col space-y-5 overflow-y-auto'>
-            <ul className='space-y-5'>
-              {cartQuery.data?.lineItems?.map((item) => (
-                <ShoppingCartItem
-                  key={item._id}
-                  item={item}
-                  onProductLinkClicked={() => setSheetOpen(false)}
-                />
-              ))}
-            </ul>
-            {cartQuery.isPending && <p>Loading...</p>}
-            {cartQuery.error && (
-              <p className='text-destructive'>{cartQuery.error.message}</p>
-            )}
-            {!cartQuery.isPending && !cartQuery.data?.lineItems?.length && (
-              <div className='flex grow items-center justify-center text-center'>
-                <div className='space-y-1.5'>
-                  <p className='text-lg font-semibold'>Your cart is empty</p>
-                  <Link
-                    href='/shop'
-                    className='text-primary hover:underline'
-                    onClick={() => setSheetOpen(false)}
-                  >
-                    Start shopping now
-                  </Link>
+          <div className={styles.modalContent}>
+            <p>
+
+            Your cart{" "}
+            <span className='text-base'>
+              ({totalQuantity} {totalQuantity === 1 ? "item" : "items"})
+            </span>
+            </p>
+            <br />
+            <br />
+            <br />
+            <div className='flex grow flex-col space-y-5 overflow-y-auto'>
+              <ul className='space-y-5'>
+                {cartQuery.data?.lineItems?.map((item) => (
+                  <ShoppingCartItem
+                    key={item._id}
+                    item={item}
+                    onProductLinkClicked={() => setSheetOpen(false)}
+                  />
+                ))}
+              </ul>
+              {cartQuery.isPending && <p>Loading...</p>}
+              {cartQuery.error && (
+                <p className='text-destructive'>{cartQuery.error.message}</p>
+              )}
+              {!cartQuery.isPending && !cartQuery.data?.lineItems?.length && (
+                <div className='flex grow items-center justify-center text-center'>
+                  <div className='space-y-1.5'>
+                    <p className='text-lg font-semibold'>Your cart is empty</p>
+                    <Link
+                      href='/shop'
+                      className='text-primary hover:underline'
+                      onClick={() => setSheetOpen(false)}
+                    >
+                      Start shopping now
+                    </Link>
+                  </div>
                 </div>
+              )}
+            </div>
+            <br />
+            <hr />
+            <br />
+            <div className='flex items-center justify-between gap-5'>
+              <div className='space-y-0.5'>
+                <p className='text-sm'>Subtotal Amount</p>
+                <p className='font-bold'>
+                  {/* @ts-expect-error */}
+                  {cartQuery.data?.subtotal?.formattedConvertedAmount}
+                </p>
+                <p className='text-muted-foreground text-xs'>
+                  Shipping and taxes calculated at checkout
+                </p>
+                <button
+                  onClick={handleCheckout}
+                  disabled={!totalQuantity || cartQuery.isFetching || pending}
+                  className='rounded-md bg-orange-500 p-3 text-white'
+                >
+                  {pending ? "Processing..." : "Checkout"}
+                </button>
               </div>
-            )}
-          </div>
-          <br />
-          <hr />
-          <br />
-          <div className='flex items-center justify-between gap-5'>
-            <div className='space-y-0.5'>
-              <p className='text-sm'>Subtotal Amount</p>
-              <p className='font-bold'>
-                {/* @ts-expect-error */}
-                {cartQuery.data?.subtotal?.formattedConvertedAmount}
-              </p>
-              <p className='text-muted-foreground text-xs'>
-                Shipping and taxes calculated at checkout
-              </p>
-              <button
-                onClick={handleCheckout}
-                disabled={!totalQuantity || cartQuery.isFetching || pending}
-                className='rounded-md bg-orange-500 p-3 text-white'
-              >
-                {pending ? "Processing..." : "Checkout"}
-              </button>
             </div>
           </div>
         </Modal>
