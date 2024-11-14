@@ -149,6 +149,10 @@
     transform: translateY(-8px) rotate(-45deg);
     background-color: var(--white);
   }
+
+  .black {
+    background-color: var(--black);
+  }
 }
 
 @media screen and (max-width: 568px) {

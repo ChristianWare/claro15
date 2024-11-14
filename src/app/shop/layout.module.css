@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+  height: 100vh; /* Adjust as necessary based on layout needs */
+}
+
+.navContainer {
+  position: absolute;
+  top: -80px;
+  width: 100%;
+  z-index: 99999;
+}
+
+@media screen and (max-width: 870px) {
+.navContainer {
+  top: -36px;
+}
+}

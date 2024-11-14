@@ -3,3 +3,7 @@
   height: 25px;
   color: var(--white);
 }
+
+.black {
+  color: var(--black)
+}

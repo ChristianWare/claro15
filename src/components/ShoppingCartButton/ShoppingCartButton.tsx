@@ -17,10 +17,12 @@ import Cart from "../../../public/icons/cart.svg";
 
 interface ShoppingCartButtonProps {
   initialData: currentCart.Cart | null;
+  color?: string;
 }
 
 export default function ShoppingCartButton({
   initialData,
+  color = "",
 }: ShoppingCartButtonProps) {
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -46,7 +48,7 @@ export default function ShoppingCartButton({
       <div className='relative'>
         <button onClick={() => setSheetOpen(true)} className={styles.button}>
           <div className={styles.cartParent}>
-            <Cart className={styles.icon} />
+            <Cart className={`${styles.icon} ${styles[color]}`} />
             <span className={styles.counter}>
               {totalQuantity < 10 ? totalQuantity : "9+"}
             </span>

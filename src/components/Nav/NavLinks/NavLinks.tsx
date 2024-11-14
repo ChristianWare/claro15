@@ -93,9 +93,9 @@ const NavLinks = ({ color = "" }: NavProps) => {
         }
         onClick={openMenu}
       >
-        <span className={styles.whiteBar}></span>
-        <span className={styles.whiteBar}></span>
-        <span className={styles.whiteBar}></span>
+        <span className={`${styles.whiteBar} ${styles[color]}`}></span>
+        <span className={`${styles.whiteBar} ${styles[color]}`}></span>
+        <span className={`${styles.whiteBar} ${styles[color]}`}></span>
       </span>
     </nav>
   );

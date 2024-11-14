@@ -29,8 +29,8 @@
 
 .navContainer {
   position: absolute;
-  top: 30px;
-  width: 93%;
+  top: -80px;
+  width: 100%;
   z-index: 99999;
 }
 
@@ -60,6 +60,12 @@
 
 .btnContainer {
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 870px) {
+.navContainer {
+  top: -36px;
+}
 }
 
 @media screen and (max-width: 568px) {

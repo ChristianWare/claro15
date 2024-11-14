@@ -29,10 +29,11 @@
 
 .navContainer {
   position: absolute;
-  top: 30px;
-  width: 93%;
+  top: -80px;
+  width: 100%;
   z-index: 99999;
 }
+
 
 .content {
   display: flex;
@@ -57,6 +58,13 @@
   margin-right: auto;
   /* width: 50%; */
 }
+
+@media screen and (max-width: 870px) {
+.navContainer {
+  top: -36px;
+}
+}
+
 
 
 
