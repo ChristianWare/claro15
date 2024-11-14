@@ -34,6 +34,7 @@ export default function SearchFilterLayout({
 
   const [filters, setFilters] = useState(initialFilters);
   const [isPending, startTransition] = useTransition();
+  const [isFilterVisible, setFilterVisible] = useState(false);
 
   useEffect(() => {
     setFilters({
@@ -66,34 +67,44 @@ export default function SearchFilterLayout({
   return (
     <LayoutWrapper>
       <main className={styles.main}>
-        {!isProductPage && (
-          <>
-            <aside
-              className={styles.aside}
-              data-pending={isPending ? "" : undefined}
-            >
-              <CollectionsFilter
-                collections={collections}
-                selectedCollectionIds={filters.collection}
-                updateCollectionIds={(collectionIds) =>
-                  updateFilters({ collection: collectionIds })
-                }
-              />
-              <PriceFilter
-                minDefaultInput={filters.price_min}
-                maxDefaultInput={filters.price_max}
-                updatePriceRange={(min, max) =>
-                  updateFilters({ price_min: min, price_max: max })
-                }
-              />
-              <SortFilter
-                sort={filters.sort}
-                updateSort={(sort) => updateFilters({ sort })}
-              />
-            </aside>
-          </>
-        )}
-        <div>{children}</div>
+        <div className={styles.content}>
+          {!isProductPage && (
+            <>
+              <div
+                className={styles.filterButton}
+                onClick={() => setFilterVisible(!isFilterVisible)}
+              >
+                Filter
+              </div>
+              <aside
+                className={`${styles.aside} ${
+                  isFilterVisible ? styles.asideVisible : ""
+                }`}
+                data-pending={isPending ? "" : undefined}
+              >
+                <CollectionsFilter
+                  collections={collections}
+                  selectedCollectionIds={filters.collection}
+                  updateCollectionIds={(collectionIds) =>
+                    updateFilters({ collection: collectionIds })
+                  }
+                />
+                <PriceFilter
+                  minDefaultInput={filters.price_min}
+                  maxDefaultInput={filters.price_max}
+                  updatePriceRange={(min, max) =>
+                    updateFilters({ price_min: min, price_max: max })
+                  }
+                />
+                <SortFilter
+                  sort={filters.sort}
+                  updateSort={(sort) => updateFilters({ sort })}
+                />
+              </aside>
+            </>
+          )}
+          <div>{children}</div>
+        </div>
       </main>
     </LayoutWrapper>
   );
@@ -132,7 +143,7 @@ function CollectionsFilter({
 
   return (
     <div>
-      <h3 className={styles.shopTitle}>Shop</h3>
+      {/* <h3 className={styles.shopTitle}>Shop</h3> */}
       <ul className={styles.collectionsList}>
         {/* All option */}
         <li key='all'>
@@ -227,7 +238,6 @@ function PriceFilter({
           onChange={(e) => setMinInput(e.target.value || "")}
           className={styles.priceInput}
         />
-        {/* <span>-</span> */}
         <input
           type='number'
           name='max'
@@ -260,14 +270,21 @@ interface SortFilterProps {
 function SortFilter({ sort, updateSort }: SortFilterProps) {
   return (
     <div className={styles.filterContainer}>
-      <label>Sort by: </label>
+      <h3 className={styles.sortTitle}>Sort by :</h3>
       <select
         value={sort || "last_updated"}
         onChange={(e) => updateSort(e.target.value)}
+        className={styles.selectOption}
       >
-        <option value='last_updated'>Newest</option>
-        <option value='price_asc'>Price (Low to high)</option>
-        <option value='price_desc'>Price (High to low)</option>
+        <option value='last_updated' className={styles.option}>
+          Newest
+        </option>
+        <option value='price_asc' className={styles.option}>
+          Price (Low to high)
+        </option>
+        <option value='price_desc' className={styles.option}>
+          Price (High to low)
+        </option>
       </select>
     </div>
   );

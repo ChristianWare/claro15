@@ -4,6 +4,7 @@ import { getCollections } from "@/wix-api/collections";
 import SearchFilterLayout from "./SearchFilterLayout";
 import Nav from "@/components/Nav/Nav";
 import ContentPadding from "@/components/ContentPadding/ContentPadding";
+import Footer from "@/components/Footer/Footer";
 
 export default async function Layout({
   children,
@@ -23,6 +24,7 @@ export default async function Layout({
       <SearchFilterLayout collections={collections}>
         {children}
       </SearchFilterLayout>
+      <Footer />
     </div>
   );
 }

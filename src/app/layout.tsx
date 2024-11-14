@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Libre_Baskerville } from "next/font/google";
+import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
@@ -72,7 +72,7 @@ export default function RootLayout({
             }}
           />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </ReactQueryProvider>
       </body>
     </html>

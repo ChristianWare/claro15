@@ -1,4 +1,4 @@
-.main {
+.content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -10,12 +10,6 @@
 .aside {
   position: sticky;
   top: 2.5rem;
-}
-
-.filterContainer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 }
 
 .shopTitle {
@@ -86,9 +80,11 @@
   justify-content: flex-start;
   gap: 1rem;
   margin-bottom: 5rem;
+  width: 100%;
 }
 
-.priceRangeTitle {
+.priceRangeTitle,
+.sortTitle {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
@@ -98,6 +94,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
   gap: 1rem;
 }
 
@@ -105,6 +102,7 @@
   border: 1px solid darkgray;
   padding: 1rem;
   border-radius: 6px;
+  width: 100%;
 }
 
 .goBtn,
@@ -123,4 +121,63 @@
 
 .clearBtn {
   background-color: var(--black);
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.selectOption {
+  border: 1px solid darkgray;
+  background-color: rgb(236, 233, 233);
+  padding: 1rem;
+  border-radius: 6px;
+  color: var(--black);
+  position: relative;
+  width: 100%;
+}
+
+/* Add button styling */
+.filterButton {
+  display: none;
+  border: 1px solid var(--black);
+  color: var(--black);
+  padding: 1rem 5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+@media screen and (max-width: 1068px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .aside {
+    align-items: center;
+    position: static;
+  }
+
+  .filterButton {
+    display: inline-block;
+  }
+
+  .aside {
+    display: none; 
+  }
+
+  .asideVisible {
+    display: block;
+  }
+  
+  .aside {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
 }
