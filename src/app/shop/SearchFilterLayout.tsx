@@ -1,12 +1,10 @@
-// SearchFilterLayout.tsx
-
 "use client";
 
 import styles from "./SearchFilterLayout.module.css";
 import { collections } from "@wix/stores";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import LayoutWrapper from "@/components/LayoutWrapper";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useTransition, useMemo } from "react";
 
 interface SearchFilterLayoutProps {
   collections: collections.Collection[];
@@ -21,29 +19,36 @@ export default function SearchFilterLayout({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Log the pathname to verify it
-  console.log("Current pathname:", pathname);
-
-  // Check if we're on a specific product page (e.g., /shop/[slug])
   const isProductPage =
     pathname?.startsWith("/shop/") && pathname.split("/").length === 3;
 
-  // Optimistic filter state
-  const [filters, setFilters] = useState({
-    collection: searchParams.getAll("collection"),
-    price_min: searchParams.get("price_min") || "",
-    price_max: searchParams.get("price_max") || "",
-    sort: searchParams.get("sort") || "last_updated",
-  });
+  const initialFilters = useMemo(
+    () => ({
+      collection: searchParams.getAll("collection") || [],
+      price_min: searchParams.get("price_min") || "",
+      price_max: searchParams.get("price_max") || "",
+      sort: searchParams.get("sort") || "last_updated",
+    }),
+    [searchParams]
+  );
 
+  const [filters, setFilters] = useState(initialFilters);
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    setFilters({
+      collection: searchParams.getAll("collection") || [],
+      price_min: searchParams.get("price_min") || "",
+      price_max: searchParams.get("price_max") || "",
+      sort: searchParams.get("sort") || "last_updated",
+    });
+  }, [searchParams]);
 
   function updateFilters(updatedValues: Partial<typeof filters>) {
     const newFilters = { ...filters, ...updatedValues };
     setFilters(newFilters);
 
-    // Update URL search params
-    const newSearchParams = new URLSearchParams(searchParams);
+    const newSearchParams = new URLSearchParams();
     Object.entries(newFilters).forEach(([key, value]) => {
       newSearchParams.delete(key);
       if (Array.isArray(value)) {
@@ -63,7 +68,6 @@ export default function SearchFilterLayout({
       <main className={styles.main}>
         {!isProductPage && (
           <>
-           
             <aside
               className={styles.aside}
               data-pending={isPending ? "" : undefined}
@@ -106,44 +110,87 @@ function CollectionsFilter({
   selectedCollectionIds,
   updateCollectionIds,
 }: CollectionsFilterProps) {
+  const isAllSelected =
+    selectedCollectionIds.length === 0 || selectedCollectionIds.includes("all");
+
+  function handleAllSelection() {
+    updateCollectionIds(["all"]);
+  }
+
+  function handleCollectionSelection(collectionId: string, checked: boolean) {
+    if (checked) {
+      updateCollectionIds([
+        ...selectedCollectionIds.filter((id) => id !== "all"),
+        collectionId,
+      ]);
+    } else {
+      updateCollectionIds(
+        selectedCollectionIds.filter((id) => id !== collectionId)
+      );
+    }
+  }
+
   return (
     <div>
-      <div>Collections</div>
-      <ul>
+      <h3 className={styles.shopTitle}>Shop</h3>
+      <ul className={styles.collectionsList}>
+        {/* All option */}
+        <li key='all'>
+          <label className={styles.collectionNameBox}>
+            <input
+              type='checkbox'
+              id='all'
+              checked={isAllSelected}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                if (checked) {
+                  handleAllSelection();
+                } else {
+                  updateCollectionIds([]); // Clear all selections if "All" is unchecked
+                }
+              }}
+              className={styles.checkbox}
+            />
+            <span className={styles.customCheckbox}></span>
+            <span className={styles.collectionName}>All</span>
+          </label>
+        </li>
+
+        {/* Individual collections */}
         {collections.map((collection) => {
           const collectionId = collection._id;
           if (!collectionId) return null;
+          const isChecked = isAllSelected
+            ? false
+            : selectedCollectionIds.includes(collectionId);
+
           return (
             <li key={collectionId}>
-              <label className='flex cursor-pointer items-center gap-2 font-medium'>
+              <label className={styles.collectionNameBox}>
                 <input
                   type='checkbox'
                   id={collectionId}
-                  checked={selectedCollectionIds.includes(collectionId)}
+                  checked={isChecked}
                   onChange={(e) => {
                     const checked = e.target.checked;
-                    updateCollectionIds(
-                      checked
-                        ? [...selectedCollectionIds, collectionId]
-                        : selectedCollectionIds.filter(
-                            (id) => id !== collectionId
-                          )
-                    );
+                    handleCollectionSelection(collectionId, checked);
                   }}
-                  className='form-checkbox'
+                  className={styles.checkbox}
                 />
-                <span>{collection.name}</span>
+                <span className={styles.customCheckbox}></span>
+                <span className={styles.collectionName}>{collection.name}</span>
               </label>
             </li>
           );
         })}
       </ul>
-      {selectedCollectionIds.length > 0 && (
-        <button onClick={() => updateCollectionIds([])}>Clear</button>
+      {selectedCollectionIds.length > 0 && !isAllSelected && (
+        <button onClick={() => updateCollectionIds(["all"])}>Clear</button>
       )}
     </div>
   );
 }
+
 
 interface PriceFilterProps {
   minDefaultInput: string | undefined;

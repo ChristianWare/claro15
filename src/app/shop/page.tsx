@@ -1,8 +1,7 @@
 import { ProductsSort } from "@/wix-api/products";
 import { Metadata } from "next";
 import { Suspense } from "react";
-// import styles from "./ShopPage.module.css";
-import ProductResults from "@/components/ProductResults/ProductResults"; 
+import ProductResults from "@/components/ProductResults/ProductResults";
 
 interface PageProps {
   searchParams: {
@@ -36,16 +35,16 @@ export default async function Page({ searchParams }: PageProps) {
 
   return (
     <main>
-        <Suspense fallback='Loading...' key={`${q}-${page}`}>
-          <ProductResults
-            q={q}
-            page={parseInt(page)}
-            collectionIds={collectionIds}
-            priceMin={price_min ? parseInt(price_min) : undefined}
-            priceMax={price_max ? parseInt(price_max) : undefined}
-            sort={sort as ProductsSort}
-          />
-        </Suspense>
+      <Suspense fallback='Loading...' key={`${q}-${page}`}>
+        <ProductResults
+          q={q}
+          page={parseInt(page)}
+          collectionIds={collectionIds}
+          priceMin={price_min ? parseInt(price_min) : undefined}
+          priceMax={price_max ? parseInt(price_max) : undefined}
+          sort={sort as ProductsSort}
+        />
+      </Suspense>
     </main>
   );
 }
