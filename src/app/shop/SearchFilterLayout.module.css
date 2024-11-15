@@ -1,4 +1,4 @@
-.content {
+.searchContent {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -7,10 +7,19 @@
   margin-top: 10rem;
 }
 
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  grid-gap: 4rem;
+  margin-top: 4rem;
+}
+
 .aside {
   position: sticky;
   top: 2.5rem;
   margin-top: 6rem;
+
 }
 
 .shopTitle {

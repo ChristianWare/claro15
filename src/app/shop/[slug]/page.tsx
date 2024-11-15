@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import { Metadata } from "next";
 import { getWixServerClient } from "@/lib/wix-client.server";
+import Features from "@/components/Features/Features";
+import LayoutWrapper from "@/components/LayoutWrapper";
 
 interface PageProps {
   params: { slug: string };
@@ -47,8 +49,11 @@ export default async function Page({ params }: PageProps) {
   if (!product?._id) notFound();
 
   return (
-    <main className='py10 mx-auto max-w-7xl space-y-10 px-5'>
-      <ProductDetails product={product} />
+    <main>
+      <LayoutWrapper>
+        <ProductDetails product={product} />
+      </LayoutWrapper>
+      <Features />
     </main>
   );
 }

@@ -1,7 +1,7 @@
 import CollectionGroup from "@/components/CollectionGroup/CollectionGroup";
 import PageIntro from "@/components/PageIntro/PageIntro";
 import img from "../../../public/images/collections.jpg";
-import Footer from "@/components/Footer/Footer";
+// import Footer from "@/components/Footer/Footer";
 
 export default function page() {
   return (
@@ -12,7 +12,7 @@ export default function page() {
         text='Collections'
       />
       <CollectionGroup />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

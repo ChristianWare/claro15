@@ -2,6 +2,12 @@ import { ProductsSort } from "@/wix-api/products";
 import { Metadata } from "next";
 import { Suspense } from "react";
 import ProductResults from "@/components/ProductResults/ProductResults";
+import { getWixServerClient } from "@/lib/wix-client.server";
+import { getCollections } from "@/wix-api/collections";
+import SearchFilterLayout from "./SearchFilterLayout";
+import LayoutWrapper from "@/components/LayoutWrapper";
+// import Nav from "@/components/Nav/Nav";
+// import styles from "./ShopPage.module.css";
 
 interface PageProps {
   searchParams: {
@@ -33,18 +39,24 @@ export default async function Page({ searchParams }: PageProps) {
     sort,
   } = await Promise.resolve(searchParams);
 
+  // Fetch collections
+  const collections = await getCollections(await getWixServerClient());
+
   return (
-    <main>
-      <Suspense fallback='Loading...' key={`${q}-${page}`}>
-        <ProductResults
-          q={q}
-          page={parseInt(page)}
-          collectionIds={collectionIds}
-          priceMin={price_min ? parseInt(price_min) : undefined}
-          priceMax={price_max ? parseInt(price_max) : undefined}
-          sort={sort as ProductsSort}
-        />
-      </Suspense>
-    </main>
+    <LayoutWrapper>
+      <SearchFilterLayout collections={collections}>
+      
+        <Suspense fallback='Loading...' key={`${q}-${page}`}>
+          <ProductResults
+            q={q}
+            page={parseInt(page)}
+            collectionIds={collectionIds}
+            priceMin={price_min ? parseInt(price_min) : undefined}
+            priceMax={price_max ? parseInt(price_max) : undefined}
+            sort={sort as ProductsSort}
+          />
+        </Suspense>
+      </SearchFilterLayout>
+    </LayoutWrapper>
   );
 }

@@ -3,7 +3,7 @@
 import styles from "./SearchFilterLayout.module.css";
 import { collections } from "@wix/stores";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import LayoutWrapper from "@/components/LayoutWrapper";
+// import LayoutWrapper from "@/components/LayoutWrapper";
 import { useEffect, useState, useTransition, useMemo } from "react";
 
 interface SearchFilterLayoutProps {
@@ -65,7 +65,7 @@ export default function SearchFilterLayout({
   }
 
   return (
-    <LayoutWrapper>
+    // <LayoutWrapper>
       <main className={styles.main}>
         <div className={styles.content}>
           {!isProductPage && (
@@ -106,7 +106,7 @@ export default function SearchFilterLayout({
           <div>{children}</div>
         </div>
       </main>
-    </LayoutWrapper>
+    // </LayoutWrapper>
   );
 }
 

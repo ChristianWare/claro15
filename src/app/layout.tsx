@@ -1,8 +1,8 @@
-import { Libre_Baskerville } from "next/font/google";
 import type { Metadata } from "next";
+import { Libre_Baskerville } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "@/components/Footer/Footer";
+// import Footer from "@/components/Footer/Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
 

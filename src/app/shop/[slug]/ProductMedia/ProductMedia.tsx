@@ -28,7 +28,7 @@ export default function ProductMedia({ media }: ProductMediaProps) {
             alt={selectedImage.altText}
             // width={550}
             // height={550}
-              scaleToFill={false}
+            scaleToFill={false}
             className={styles.img}
           />
         </div>

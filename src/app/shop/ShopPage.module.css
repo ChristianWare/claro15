@@ -9,3 +9,10 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2rem;
 }
+
+.navContainer {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 99999;
+}
