@@ -8,6 +8,7 @@ import ProductMedia from "../ProductMedia/ProductMedia";
 import ProductPrice from "../ProductPrice/ProductPrice";
 import ProductOptions from "../ProductOptions/ProductOptions";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
+import CollapsibleSection from "@/components/CollapsibleSection/CollapsibleSection";
 // import BuyNowButton from "@/components/BuyNowButton/BuyNowButton";
 
 interface ProductDetailsProps {
@@ -15,7 +16,8 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const [quantity, setQunatity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [showMore, setShowMore] = useState(false);
 
   const [selectedOptions, setSelectedOptions] = useState<
     Record<string, string>
@@ -31,11 +33,22 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   const inStock = checkInStock(product, selectedOptions);
 
-  const availableQuantity =
-    selectedVariant?.stock?.quantity ?? product.stock?.quantity;
+  const availableQuantity = Math.min(product.stock?.quantity || 10, 10) ?? 1;
 
   const availableQuantityExceeded =
     !!availableQuantity && quantity > availableQuantity;
+
+  const increaseQuantity = () => {
+    if (quantity < availableQuantity) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -57,28 +70,62 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         {product.description && (
           <div
             dangerouslySetInnerHTML={{ __html: product.description }}
-            className='prose'
-          ></div>
-        )}
-        <label htmlFor='quantity'>Quantity</label>
-        <div className='gap2-.5 flex items-center'>
-          <input
-            type='number'
-            name='quantity'
-            value={quantity}
-            onChange={(e) => setQunatity(Number(e.target.value))}
-            className='w-24 border-blue-500'
-            disabled={!inStock}
+            className={styles.description}
           />
+        )}
+
+        {!!product.additionalInfoSections?.length && (
+          <>
+            <p
+              className={styles.readMore}
+              onClick={() => setShowMore(!showMore)}
+            >
+              {showMore ? "- Show Less" : "+ Read More"}
+            </p>
+            <div
+              className={`${styles.infoContainer} ${
+                showMore ? styles.show : ""
+              }`}
+            >
+              {product.additionalInfoSections.map((section) => (
+                <div key={section.title}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: section.description || "",
+                    }}
+                    className={styles.description}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        <div className={styles.quantityInfo}>
+          <div className={styles.quantitySelector}>
+            <button
+              onClick={decreaseQuantity}
+              className={styles.quantityButton}
+            >
+              -
+            </button>
+            <span className={styles.quantityDisplay}>{quantity}</span>
+            <button
+              onClick={increaseQuantity}
+              className={styles.quantityButton}
+            >
+              +
+            </button>
+          </div>
           {!!availableQuantity &&
             (availableQuantityExceeded || availableQuantity < 10) && (
-              <span className='text-destructive'>
+              <span className={styles.stockWarning}>
                 Only {availableQuantity} left in stock
               </span>
             )}
         </div>
+
         {inStock ? (
-          <div className='flex items-center gap-2.5'>
+          <div className={styles.btnContainer}>
             <AddToCartButton
               product={product}
               selectedOptions={selectedOptions}
@@ -99,22 +146,20 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           //   selectedOptions={selectedOptions}
           // />
         )}
-        {!!product.additionalInfoSections?.length && (
-          <>
-            <p>Additional product information</p>
-            {product.additionalInfoSections.map((section) => (
-              <div key={section.title}>
-                <p>{section.title}</p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: section.description || "",
-                  }}
-                  className='prose text-muted-foreground dark:prose-invert text-sm'
-                />
-              </div>
-            ))}{" "}
-          </>
-        )}
+        <div className={styles.CollapsibleSection}>
+          <CollapsibleSection
+            title='Warranty'
+            content='Your investment in CLARO headphones is backed by our unwavering commitment to quality. Every purchase comes with a 90-day warranty, ensuring your audio journey is supported with peace of mind.'
+          />
+          <CollapsibleSection
+            title='Shipping & delivery'
+            content='Our global shipping network ensures that no matter where you are, your headphones will arrive at your doorstep with swift efficiency. All orders ship next business day.'
+          />
+          <CollapsibleSection
+            title='Support'
+            content='Download the CLARO app now – available on Google Play and the Apple Store. For technical support, please visit our Support page.'
+          />
+        </div>
       </div>
     </div>
   );

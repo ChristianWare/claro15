@@ -22,14 +22,16 @@ export default function ProductMedia({ media }: ProductMediaProps) {
   return (
     <div className={styles.container}>
       {selectedImage?.url ? (
-        <WixImage
-          mediaIdentifier={selectedImage.url}
-          alt={selectedImage.altText}
-          width={500}
-          height={500}
-          //   scaleToFill={false}
-          className={styles.img}
-        />
+        <div className={styles.imgContainer}>
+          <WixImage
+            mediaIdentifier={selectedImage.url}
+            alt={selectedImage.altText}
+            // width={550}
+            // height={550}
+              scaleToFill={false}
+            className={styles.img}
+          />
+        </div>
       ) : selectedVideo?.url ? (
         <div>
           <video autoPlay loop>

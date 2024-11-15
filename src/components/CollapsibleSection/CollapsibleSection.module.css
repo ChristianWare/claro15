@@ -1,0 +1,38 @@
+.section {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  padding-top: 1rem;
+}
+
+.contentOpen {
+  max-height: 500px; /* Set a max-height large enough to fit the content */
+  opacity: 1;
+}

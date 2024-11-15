@@ -6,7 +6,7 @@ import Link from "next/link";
 import WixImage from "../WixImage";
 import { formatCurrency } from "@/lib/utils";
 import styles from "./Product.module.css";
-import DOMPurify from "isomorphic-dompurify";
+// import DOMPurify from "isomorphic-dompurify";
 
 interface ProductProps {
   product: products.Product;
@@ -32,7 +32,7 @@ export default function Product({ product }: ProductProps) {
             className='line-clamp-5'
             dangerouslySetInnerHTML={{ __html: product.description || "" }}
           /> */}
-          {product.additionalInfoSections && (
+          {/* {product.additionalInfoSections && (
             <div
               className={styles.addInfoDetails}
               dangerouslySetInnerHTML={{
@@ -43,7 +43,7 @@ export default function Product({ product }: ProductProps) {
                 ),
               }}
             ></div>
-          )}
+          )} */}
           <p className={styles.price}>{getFormattedPrice(product)}</p>
         </div>
       </Link>

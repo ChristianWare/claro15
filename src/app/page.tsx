@@ -1,5 +1,6 @@
 import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 import FinalCTA from "@/components/FinalCTA/FinalCTA";
+import Footer from "@/components/Footer/Footer";
 import Hero from "@/components/Hero/Hero";
 import TakeControl from "@/components/TakeControl/TakeControl";
 import Usp from "@/components/Usp/Usp";
@@ -19,6 +20,7 @@ export default function Home() {
       <VideoUsp />
       <TakeControl />
       <FinalCTA />
+      <Footer />
     </main>
   );
 }
