@@ -9,6 +9,7 @@ import PageIntro from "@/components/PageIntro/PageIntro";
 import styles from "./SlupPage.module.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import VideoUspiii from "@/components/VideoUspiii/VideoUspiii";
+import Footer from "@/components/Footer/Footer";
 
 interface PageProps {
   params: { slug: string };
@@ -64,6 +65,7 @@ export default async function Page({ params }: PageProps) {
         <br />
         <VideoUspiii />
       </LayoutWrapper>
+      <Footer />
     </main>
   );
 }
