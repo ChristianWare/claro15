@@ -1,0 +1,15 @@
+.heading {
+  width: 50%;
+}
+
+@media screen and (max-width: 968px) {
+  .heading {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
+    width: 100%;
+  }
+}
