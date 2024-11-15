@@ -11,6 +11,8 @@ import TextImageFlip from "@/components/TextImageFlip/TextImageFlip";
 import FlipOne from "../../../../public/images/flipOne.jpg";
 import FlipTwo from "../../../../public/images/flipTwo.jpg";
 import Witb from "@/components/Witb/Witb";
+import { Suspense } from "react";
+import RelatedProducts from "./RelatedProducts/RelatedProducts";
 
 interface PageProps {
   params: { slug: string };
@@ -76,6 +78,9 @@ export default async function Page({ params }: PageProps) {
         flip='flip'
       />
       <Witb media={media} itemName={product.name || undefined} />
+      <Suspense fallback={"Loading..."}>
+        <RelatedProducts productId={product._id} />
+      </Suspense>
     </main>
   );
 }
