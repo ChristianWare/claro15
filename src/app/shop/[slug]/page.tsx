@@ -61,7 +61,9 @@ export default async function Page({ params }: PageProps) {
   return (
     <main>
       <LayoutWrapper>
-        <ProductDetails product={product} />
+        <div style={{ marginTop: "5rem" }}>
+          <ProductDetails product={product} />
+        </div>
       </LayoutWrapper>
       <Features />
       <VideoUsp />
