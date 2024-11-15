@@ -5,6 +5,8 @@ import { Metadata } from "next";
 import { getWixServerClient } from "@/lib/wix-client.server";
 import Features from "@/components/Features/Features";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import VideoUsp from "@/components/VideoUsp/VideoUsp";
+import Featuresii from "@/components/Featuresii/Featuresii";
 
 interface PageProps {
   params: { slug: string };
@@ -54,6 +56,8 @@ export default async function Page({ params }: PageProps) {
         <ProductDetails product={product} />
       </LayoutWrapper>
       <Features />
+      <VideoUsp />
+      <Featuresii />
     </main>
   );
 }

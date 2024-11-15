@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from "react";
 import styles from "./VideoUsp.module.css";
+import { useState, useRef } from "react";
 import Pause from "../../../public/icons/pause.svg";
 import Play from "../../../public/icons/play.svg";
 

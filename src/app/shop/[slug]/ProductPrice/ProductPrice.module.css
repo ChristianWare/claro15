@@ -5,14 +5,16 @@
 
 .price {
   /* Normal price styling */
+  font-family: var(--pretendard);
 }
 
 .strikethrough {
   text-decoration: line-through;
-  color: gray;
+  color: var(--black);
+  font-family: var(--pretendard);
 }
 
 .discountedPrice {
-  color: red;
-  font-weight: bold;
+  font-family: var(--pretendard);
+  color: var(--black);
 }
