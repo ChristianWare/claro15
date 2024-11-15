@@ -17,6 +17,17 @@
   gap: 2rem;
 }
 
+.text {
+  text-align: center;
+}
+
 .icon {
   opacity: 0.6;
+}
+
+
+@media screen and (max-width: 768px) {
+  .bottomii {
+    flex-wrap: wrap;
+  }
 }
