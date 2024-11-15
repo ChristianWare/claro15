@@ -85,17 +85,30 @@
   margin-left: auto;
 }
 
-@media screen and (max-width: 768px) {
+.bottomii {
+  margin-top: 10rem;
+}
+
+.headingii {
+  margin-left: auto;
+  width: 70%;
+}
+
+@media screen and (max-width: 1068px) {
   .bottom {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
   }
 
-  .heading,
+  .heading, .headingii,
   .copy {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .headingii {
+    width: 100%;
   }
 }
 

@@ -58,6 +58,13 @@ const AboutVideo = () => {
             exceptional audio experience.
           </p>
         </div>
+        <div className={styles.bottomii}>
+          <h2 className={styles.headingii}>
+            Just as athletes push the boundaries of human potential, were
+            dedicated to pushing the boundaries of audio quality, crafting
+            headphones that set new standards and ignite your senses.
+          </h2>
+        </div>
       </LayoutWrapper>
     </section>
   );
