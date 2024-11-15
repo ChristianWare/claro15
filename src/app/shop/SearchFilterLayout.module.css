@@ -2,14 +2,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 4rem;
+  gap: 5rem;
   padding: 0rem;
-  margin-top: 15rem;
+  margin-top: 10rem;
 }
 
 .aside {
   position: sticky;
   top: 2.5rem;
+  margin-top: 6rem;
 }
 
 .shopTitle {
@@ -160,24 +161,36 @@
   .aside {
     align-items: center;
     position: static;
+    display: none;
+    margin-top: 0rem;
   }
 
   .filterButton {
     display: inline-block;
   }
 
-  .aside {
-    display: none; 
-  }
-
   .asideVisible {
     display: block;
   }
-  
+
   .aside {
     width: 100%;
   }
+
+  .priceRange {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .goBtn {
+    margin-top: 0;
+    height: 100%;
+  }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 568px) {
+  .priceRange {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
