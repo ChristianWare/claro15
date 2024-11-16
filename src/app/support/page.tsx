@@ -1,6 +1,8 @@
 import PageIntro from "@/components/PageIntro/PageIntro";
 import SupportImage from "../../../public/images/support.jpg";
 import SupportContact from "./SupportContact/SupportContact";
+import NewFaq from "@/components/NewFaq/NewFaq";
+import Footer from "@/components/Footer/Footer";
 
 const SupportPage = () => {
   return (
@@ -11,6 +13,8 @@ const SupportPage = () => {
         text='Reach out to CLARO'
       />
       <SupportContact />
+      <NewFaq />
+      <Footer />
     </main>
   );
 };
