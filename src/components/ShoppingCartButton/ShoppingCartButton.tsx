@@ -14,6 +14,7 @@ import Modal from "../Modal/Modal";
 import Link from "next/link";
 import WixImage from "../WixImage";
 import Cart from "../../../public/icons/cart.svg";
+import Trash from "../../../public/icons/trash.svg";
 
 interface ShoppingCartButtonProps {
   initialData: currentCart.Cart | null;
@@ -56,18 +57,19 @@ export default function ShoppingCartButton({
         </button>
         <Modal isOpen={sheetOpen} onClose={() => setSheetOpen(false)}>
           <div className={styles.modalContent}>
-            <p>
-
-            Your cart{" "}
-            <span className='text-base'>
-              ({totalQuantity} {totalQuantity === 1 ? "item" : "items"})
-            </span>
-            </p>
+            <div className={styles.topContent}>
+              <div className={styles.quantityContainer}>
+                <p>My cart</p>
+                <div className={styles.quantityBox}>
+                  <span className={styles.quantity}>{totalQuantity}</span>
+                </div>
+              </div>
+            </div>
             <br />
             <br />
             <br />
             <div className='flex grow flex-col space-y-5 overflow-y-auto'>
-              <ul className='space-y-5'>
+              <ul className={styles.cartList}>
                 {cartQuery.data?.lineItems?.map((item) => (
                   <ShoppingCartItem
                     key={item._id}
@@ -95,23 +97,23 @@ export default function ShoppingCartButton({
                 </div>
               )}
             </div>
-            <br />
-            <hr />
-            <br />
-            <div className='flex items-center justify-between gap-5'>
+            <div className={styles.modalBottom}>
               <div className='space-y-0.5'>
-                <p className='text-sm'>Subtotal Amount</p>
-                <p className='font-bold'>
-                  {/* @ts-expect-error */}
-                  {cartQuery.data?.subtotal?.formattedConvertedAmount}
-                </p>
-                <p className='text-muted-foreground text-xs'>
-                  Shipping and taxes calculated at checkout
+                <div className={styles.subtotalBox}>
+                  <p>Subtotal</p>
+                  <p>
+                    {/* @ts-expect-error */}
+                    {cartQuery.data?.subtotal?.formattedConvertedAmount}
+                  </p>
+                </div>
+                <p>
+                  *** Shipping and taxes calculated at checkout
                 </p>
                 <button
                   onClick={handleCheckout}
-                  disabled={!totalQuantity || cartQuery.isFetching || pending}
-                  className='rounded-md bg-orange-500 p-3 text-white'
+                  disabled={true}
+                  // disabled={!totalQuantity || cartQuery.isFetching || pending}
+                  className={styles.checkoutBox}
                 >
                   {pending ? "Processing..." : "Checkout"}
                 </button>
@@ -148,72 +150,69 @@ function ShoppingCartItem({
     item.quantity >= item.availability.quantityAvailable;
 
   return (
-    <li className='flex items-center gap-3'>
-      <div className='relative size-fit flex-none'>
-        <Link href={`/products/${slug}`} onClick={onProductLinkClicked}>
-          <WixImage
-            mediaIdentifier={item.image}
-            width={75}
-            height={75}
-            alt={item.productName?.translated || "Product image"}
-            className='flex-none'
-          />
-        </Link>
-        <button
-          className='absolute -right-1 -top-1 rounded-full border bg-background p-0.5'
-          onClick={() => removeItemMutation.mutate(productId)}
-        >
-          <p className='font-extrabold'>X</p>
-        </button>
+    <li className={styles.cartListItem}>
+      <div className={styles.left}>
+        <div className={styles.l1}>
+          <Link href={`/shop/${slug}`} onClick={onProductLinkClicked}>
+            <WixImage
+              mediaIdentifier={item.image}
+              width={100}
+              height={100}
+              alt={item.productName?.translated || "Product image"}
+              className={styles.cartImage}
+            />
+          </Link>
+        </div>
+        <div className={styles.l2}>
+          <Link href={`/products/${slug}`}>
+            <p className={styles.productName}>
+              {item.productName?.translated || "Item"}
+            </p>
+          </Link>
+          <div className={styles.qtyBtnBox}>
+            <button
+              disabled={item.quantity === 1}
+              onClick={() =>
+                updateQuantityMutation.mutate({
+                  productId,
+                  newQuantity: !item.quantity ? 0 : item.quantity - 1,
+                })
+              }
+            >
+              -
+            </button>
+            <span>{item.quantity}</span>
+            <button
+              disabled={quantityLimitReached}
+              onClick={() =>
+                updateQuantityMutation.mutate({
+                  productId,
+                  newQuantity: !item.quantity ? 1 : item.quantity + 1,
+                })
+              }
+            >
+              +
+            </button>
+          </div>
+            {quantityLimitReached && (
+              <span className={styles.quantityWarning}>
+                Quantity limit reached
+              </span>
+            )}
+        </div>
       </div>
-      <div className='space-y-1.5 text-sm'>
-        <Link href={`/products/${slug}`}>
-          <p className='font-bold'>{item.productName?.translated || "Item"}</p>
-        </Link>
-        {!!item.descriptionLines?.length && (
-          <p>
-            {item.descriptionLines
-              .map(
-                (line) =>
-                  line.colorInfo?.translated || line.plainText?.translated
-              )
-              .join(", ")}
-          </p>
-        )}
-        <div className='flex items-center gap-2'>
-          {item.quantity} x {item.price?.formattedConvertedAmount}
+      <div className={styles.right}>
+        <div>
           {item.fullPrice && item.fullPrice.amount !== item.price?.amount && (
-            <span className='text-muted-foreground line-through'>
+            <span className={styles.originalPrice}>
               {item.fullPrice.formattedConvertedAmount}
             </span>
           )}
+          {item.price?.formattedConvertedAmount}
         </div>
-        <div className='flex items-center gap-1.5'>
-          <button
-            disabled={item.quantity === 1}
-            onClick={() =>
-              updateQuantityMutation.mutate({
-                productId,
-                newQuantity: !item.quantity ? 0 : item.quantity - 1,
-              })
-            }
-          >
-            -
-          </button>
-          <span>{item.quantity}</span>
-          <button
-            disabled={quantityLimitReached}
-            onClick={() =>
-              updateQuantityMutation.mutate({
-                productId,
-                newQuantity: !item.quantity ? 1 : item.quantity + 1,
-              })
-            }
-          >
-            +
-          </button>
-          {quantityLimitReached && <span>Quantity limit reached</span>}
-        </div>
+        <button onClick={() => removeItemMutation.mutate(productId)}>
+          <Trash className={styles.trashIcon} />
+        </button>
       </div>
     </li>
   );
