@@ -2,6 +2,7 @@
   width: 25px;
   height: 25px;
   color: var(--white);
+  cursor: pointer;
 }
 
 .black {
