@@ -44,6 +44,7 @@
   z-index: 10000000000;
   position: relative;
   display: block;
+  user-select: none;
 }
 
 .quantityContainer {
@@ -108,12 +109,18 @@
 .productName {
   font-size: 1.6rem;
   font-family: var(--pretendard);
+  user-select: none;
+}
+
+.right p {
+  user-select: none;
 }
 
 .originalPrice {
   color: red;
   text-decoration: line-through;
   margin-right: 1rem;
+  user-select: none;
 }
 
 .l2 {

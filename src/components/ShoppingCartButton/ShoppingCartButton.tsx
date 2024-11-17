@@ -202,14 +202,14 @@ function ShoppingCartItem({
         </div>
       </div>
       <div className={styles.right}>
-        <div>
+        <p>
           {item.fullPrice && item.fullPrice.amount !== item.price?.amount && (
             <span className={styles.originalPrice}>
               {item.fullPrice.formattedConvertedAmount}
             </span>
           )}
           {item.price?.formattedConvertedAmount}
-        </div>
+        </p>
         <button onClick={() => removeItemMutation.mutate(productId)}>
           <Trash className={styles.trashIcon} />
         </button>
