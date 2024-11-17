@@ -28,7 +28,8 @@ export default function ShoppingCartButton({
   const [sheetOpen, setSheetOpen] = useState(false);
 
   const cartQuery = useCart(initialData);
-  const { startCheckoutFlow, pending } = useCartCheckout();
+  // const { startCheckoutFlow, pending } = useCartCheckout();
+  const { startCheckoutFlow } = useCartCheckout();
 
   const totalQuantity =
     cartQuery.data?.lineItems?.reduce(
@@ -106,16 +107,15 @@ export default function ShoppingCartButton({
                     {cartQuery.data?.subtotal?.formattedConvertedAmount}
                   </p>
                 </div>
-                <p>
-                  *** Shipping and taxes calculated at checkout
-                </p>
+                <p>*** Shipping and taxes calculated at checkout</p>
                 <button
                   onClick={handleCheckout}
                   disabled={true}
                   // disabled={!totalQuantity || cartQuery.isFetching || pending}
                   className={styles.checkoutBox}
                 >
-                  {pending ? "Processing..." : "Checkout"}
+                  {/* {pending ? "Processing..." : "Checkout"} */}
+                  Checkout Not Available
                 </button>
               </div>
             </div>
@@ -194,11 +194,11 @@ function ShoppingCartItem({
               +
             </button>
           </div>
-            {quantityLimitReached && (
-              <span className={styles.quantityWarning}>
-                Quantity limit reached
-              </span>
-            )}
+          {quantityLimitReached && (
+            <span className={styles.quantityWarning}>
+              Quantity limit reached
+            </span>
+          )}
         </div>
       </div>
       <div className={styles.right}>
