@@ -5,10 +5,8 @@
 .container {
   position: relative;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100%;
-  padding: 3rem;
   /* font-size: 0; */
 }
 
@@ -19,10 +17,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  height: 75vh;
+  height: 100%;
   border: 1px solid var(--blackiv);
   z-index: 1;
 }
+
 
 .img {
   position: absolute;
@@ -47,17 +46,16 @@
 .actualContent {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
-  backdrop-filter: blur(40px);
-  background-size: 10px 10px;
-  padding: 3rem;
-  border-radius: 20px;
 }
 
 .heading {
   color: var(--white);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btnContainer {
@@ -65,30 +63,13 @@
 }
 
 @media screen and (max-width: 870px) {
-  .navContainer {
-    top: -36px;
-  }
+.navContainer {
+  top: -36px;
 }
-
-@media screen and (max-width: 768px) {
-  .container {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .actualContent {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .heading {
-    text-align: center;
-  }
 }
 
 @media screen and (max-width: 568px) {
-  .parent,
-  .imgOverlay {
+  .parent {
     height: 100vh;
   }
 

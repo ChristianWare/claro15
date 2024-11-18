@@ -9,13 +9,14 @@ import ContentPadding from "../ContentPadding/ContentPadding";
 const Hero = () => {
   return (
     <div className={styles.parent}>
+      <section className={styles.container}>
         <div className={styles.imgOverlay}></div>
+
         <div className={styles.navContainer}>
           <ContentPadding>
             <Nav />
           </ContentPadding>
         </div>
-      <section className={styles.container}>
         <Image src={HeroImage} alt='hero' fill className={styles.img} />
         <div className={styles.content}>
           <div className={styles.actualContent}>
