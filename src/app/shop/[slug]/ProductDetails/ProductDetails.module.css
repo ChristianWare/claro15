@@ -102,9 +102,9 @@
   width: 100%;
 }
 
-.CollapsibleSection {
+.collapsibleSection {
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 @media screen and (max-width: 1068px) {

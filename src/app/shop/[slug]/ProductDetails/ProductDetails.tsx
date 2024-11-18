@@ -79,7 +79,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           selectedOptions={selectedOptions}
           setSelectedOptions={setSelectedOptions}
         />
-
         {product.description && (
           <div
             dangerouslySetInnerHTML={{ __html: product.description }}

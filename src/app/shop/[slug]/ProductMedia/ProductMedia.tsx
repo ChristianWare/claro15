@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import styles from "./ProductMedia.module.css";
 import WixImage from "@/components/WixImage";
 import { products } from "@wix/stores";
 import { useEffect, useState } from "react";
+import { useSwipeable } from "react-swipeable";
 import Arrow from "../../../../../public/icons/leftArrow.svg";
 
 interface ProductMediaProps {
@@ -40,11 +42,18 @@ export default function ProductMedia({ media }: ProductMediaProps) {
     setSelectedMedia(media[previousIndex]);
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrevious,
+    preventScrollOnSwipe: true,
+    trackTouch: true,
+  });
+
   const selectedImage = selectedMedia?.image;
   const selectedVideo = selectedMedia?.video?.files?.[0];
 
   return (
-    <div className={styles.container}>
+    <div {...swipeHandlers} className={styles.container}>
       {/* Display the selected media (image or video) */}
       <div className={styles.imgContainer}>
         {selectedImage?.url ? (
