@@ -124,9 +124,9 @@ function CollectionsFilter({
   const isAllSelected =
     selectedCollectionIds.length === 0 || selectedCollectionIds.includes("all");
 
-  function handleAllSelection() {
-    updateCollectionIds(["all"]);
-  }
+  // function handleAllSelection() {
+  //   updateCollectionIds(["all"]);
+  // }
 
   function handleCollectionSelection(collectionId: string, checked: boolean) {
     if (checked) {
@@ -143,10 +143,9 @@ function CollectionsFilter({
 
   return (
     <div>
-      {/* <h3 className={styles.shopTitle}>Shop</h3> */}
       <ul className={styles.collectionsList}>
         {/* All option */}
-        <li key='all'>
+        {/* <li key='all'>
           <label className={styles.collectionNameBox}>
             <input
               type='checkbox'
@@ -165,7 +164,7 @@ function CollectionsFilter({
             <span className={styles.customCheckbox}></span>
             <span className={styles.collectionName}>All</span>
           </label>
-        </li>
+        </li> */}
 
         {/* Individual collections */}
         {collections.map((collection) => {
