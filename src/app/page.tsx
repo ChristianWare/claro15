@@ -6,15 +6,15 @@ import TakeControl from "@/components/TakeControl/TakeControl";
 import Usp from "@/components/Usp/Usp";
 import Uspii from "@/components/Uspii/Uspii";
 import VideoUsp from "@/components/VideoUsp/VideoUsp";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <Suspense fallback='Loading...'>
+      {/* <Suspense fallback='Loading...'> */}
         <FeaturedProducts />
-      </Suspense>
+      {/* </Suspense> */}
       <Usp />
       <Uspii />
       <VideoUsp />

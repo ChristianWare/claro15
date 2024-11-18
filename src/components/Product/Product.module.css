@@ -44,3 +44,39 @@
   font-size: 1.4rem;
   opacity: 0.6;
 }
+
+/* Pulsating skeleton effect */
+@keyframes pulse {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #d4d4d4;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+.skeleton {
+  animation: pulse 1.5s infinite;
+}
+
+.imgSkeleton {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  background-color: #d4d4d4;
+}
+
+.textSkeleton {
+  width: 80%;
+  height: 20px;
+  margin-top: 1rem;
+  border-radius: 10px;
+  background-color: #d4d4d4;
+}
+
+.container.skeleton .textSkeleton:last-child {
+  width: 60%;
+}

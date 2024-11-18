@@ -20,40 +20,68 @@ export default async function FeaturedProducts() {
 
   const collection = await getCollectionBySlug(wixClient, "featured-products");
 
+  // Render skeletons if collection is not ready
   if (!collection?._id) {
-    return null;
+    return (
+      <section className={styles.container}>
+        <LayoutWrapper>
+          <div className={styles.content}>
+            <h2 className={styles.heading}>Popular</h2>
+            <div className={styles.bottom}>
+              {[...Array(6)].map((_, index) => (
+                <Product key={index} isLoading />
+              ))}
+            </div>
+          </div>
+        </LayoutWrapper>
+      </section>
+    );
   }
 
   const featuredProducts = await queryProducts(wixClient, {
     collectionIds: collection._id,
   });
 
+  // Render skeletons if there are no products
   if (!featuredProducts.items.length) {
-    return null;
+    return (
+      <section className={styles.container}>
+        <LayoutWrapper>
+          <div className={styles.content}>
+            <h2 className={styles.heading}>Popular</h2>
+            <div className={styles.bottom}>
+              {[...Array(6)].map((_, index) => (
+                <Product key={index} isLoading />
+              ))}
+            </div>
+          </div>
+        </LayoutWrapper>
+      </section>
+    );
   }
 
-    const data = [
-      {
-        id: 1,
-        icon: <Calendar width={50} height={50} className={styles.icon} />,
-        text: "90 Day Guarantee",
-      },
-      {
-        id: 2,
-        icon: <Rotate width={50} height={50} className={styles.icon} />,
-        text: "30 Day Returns",
-      },
-      {
-        id: 3,
-        icon: <Mailbox width={50} height={50} className={styles.icon} />,
-        text: "Ships Next Day",
-      },
-      {
-        id: 4,
-        icon: <Globe width={50} height={50} className={styles.icon} />,
-        text: "Ships Globally",
-      },
-    ];
+  const data = [
+    {
+      id: 1,
+      icon: <Calendar width={50} height={50} className={styles.icon} />,
+      text: "90 Day Guarantee",
+    },
+    {
+      id: 2,
+      icon: <Rotate width={50} height={50} className={styles.icon} />,
+      text: "30 Day Returns",
+    },
+    {
+      id: 3,
+      icon: <Mailbox width={50} height={50} className={styles.icon} />,
+      text: "Ships Next Day",
+    },
+    {
+      id: 4,
+      icon: <Globe width={50} height={50} className={styles.icon} />,
+      text: "Ships Globally",
+    },
+  ];
 
   return (
     <section className={styles.container}>

@@ -51,13 +51,6 @@
   justify-content: center;
   gap: 1rem;
   backdrop-filter: blur(40px);
-  background-image: repeating-linear-gradient(
-    45deg,
-    #0f0c0c,
-    #f1f1f1 1px,
-    transparent 0,
-    transparent 50%
-  );
   background-size: 10px 10px;
   padding: 3rem;
   border-radius: 20px;
@@ -84,7 +77,6 @@
   }
 
   .actualContent {
-    background-size: 12px 12px;
     align-items: center;
     justify-content: center;
   }
