@@ -74,11 +74,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <span className={styles.breadcrumbs}>Shop • {product.ribbon}</span>
         <h1 className={styles.heading}>{product.name}</h1>
         <ProductPrice product={product} selectedVariant={selectedVariant} />
-        <ProductOptions
-          product={product}
-          selectedOptions={selectedOptions}
-          setSelectedOptions={setSelectedOptions}
-        />
+
         {product.description && (
           <div
             dangerouslySetInnerHTML={{ __html: product.description }}
@@ -112,37 +108,45 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </div>
           </>
         )}
-        <div className={styles.quantityInfo}>
-          <div className={styles.quantitySelector}>
-            <button
-              onClick={decreaseQuantity}
-              className={styles.quantityButton}
-            >
-              -
-            </button>
-            <span className={styles.quantityDisplay}>{quantity}</span>
-            <button
-              onClick={increaseQuantity}
-              className={styles.quantityButton}
-            >
-              +
-            </button>
-          </div>
-          {!!availableQuantity &&
-            (availableQuantityExceeded || availableQuantity < 10) && (
-              <span className={styles.stockWarning}>
-                Only {availableQuantity} left in stock
-              </span>
-            )}
-        </div>
+
+        <ProductOptions
+          product={product}
+          selectedOptions={selectedOptions}
+          setSelectedOptions={setSelectedOptions}
+        />
 
         {inStock ? (
-          <div className={styles.btnContainer}>
-            <AddToCartButton
-              product={product}
-              selectedOptions={selectedOptions}
-              quantity={quantity}
-            />
+          <div className={styles.quantityInfoBox}>
+            <div className={styles.quantityInfo}>
+              <div className={styles.quantitySelector}>
+                <button
+                  onClick={decreaseQuantity}
+                  className={styles.quantityButton}
+                >
+                  -
+                </button>
+                <span className={styles.quantityDisplay}>{quantity}</span>
+                <button
+                  onClick={increaseQuantity}
+                  className={styles.quantityButton}
+                >
+                  +
+                </button>
+              </div>
+              {!!availableQuantity &&
+                (availableQuantityExceeded || availableQuantity < 10) && (
+                  <span className={styles.stockWarning}>
+                    Only {availableQuantity} left in stock
+                  </span>
+                )}
+            </div>
+            <div className={styles.btnContainer}>
+              <AddToCartButton
+                product={product}
+                selectedOptions={selectedOptions}
+                quantity={quantity}
+              />
+            </div>
           </div>
         ) : (
           <button className={styles.outOfStockButton}>Out of stock</button>
