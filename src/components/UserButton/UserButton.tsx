@@ -3,8 +3,10 @@
 import styles from "./UserButton.module.css";
 import useAuth from "@/hooks/auth";
 import { members } from "@wix/members";
-import Link from "next/link";
 import Person from "../../../public/icons/person.svg";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
+import Button from "../Button/Button";
 
 interface UserButtonProps {
   loggedInMember: members.Member | null;
@@ -17,39 +19,58 @@ export default function UserButton({
 }: UserButtonProps) {
   const { login, logout } = useAuth();
 
+  const [sheetOpen, setSheetOpen] = useState(false);
+
   return (
     <div className={`${styles.container} ${styles[color]}`}>
-      {loggedInMember ? (
-        <div
-          className={`flex items-center justify-center gap-2 ${styles[color]}`}
-        >
-          <button
-            onClick={() => login()}
-            className={`rounded-md bg-orange-400 p-2 text-white ${styles[color]}`}
+      <button
+        // onClick={() => login()}
+        onClick={() => setSheetOpen(true)}
+        className={`${styles[color]}`}
+      >
+        <Person className={`${styles.icon} ${styles[color]}`} />
+      </button>
+      {/* // )} */}
+      <Modal isOpen={sheetOpen} onClose={() => setSheetOpen(false)}>
+        {loggedInMember ? (
+          <div
+            className={`flex items-center justify-center gap-2 ${styles[color]}`}
           >
-            {loggedInMember.contact?.firstName}
-          </button>
-          <button
-            onClick={() => logout()}
-            className={`rounded-md bg-red-400 p-2 text-white ${styles[color]}`}
-          >
-            Logout
-          </button>
-          <Link
-            href='/profile'
-            className={`rounded-md bg-green-400 p-2 text-white ${styles[color]}`}
-          >
-            Profile
-          </Link>
-        </div>
-      ) : (
-        <button
-          onClick={() => login()}
-          className={`rounded-md bg-orange-400 p-2 text-white ${styles[color]}`}
-        >
-          <Person className={`${styles.icon} ${styles[color]}`} />
-        </button>
-      )}
+            <h6
+              // onClick={login}
+              className={styles.UserName}
+            >
+              Hello, {loggedInMember.contact?.firstName || "Login"}
+            </h6>
+            <div className={styles.btnContainer}>
+              <button className={styles.btn} onClick={logout}>
+                Logout
+              </button>
+              <Button text='Profile' btnType='blackOutline' href='/profile' />
+            </div>
+          </div>
+        ) : (
+          <>
+            <h6
+              // onClick={login}
+              className={styles.UserName}
+            >
+              User options
+            </h6>
+            <div className={styles.btnContainer}>
+              <button
+                className={styles.loginBtn}
+                // btnType='black'
+                // href='/profile'
+                onClick={login}
+              >
+                Login
+              </button>
+              <Button text='Shop Now' btnType='blackOutline' href='/shop' />
+            </div>
+          </>
+        )}
+      </Modal>
     </div>
   );
 }

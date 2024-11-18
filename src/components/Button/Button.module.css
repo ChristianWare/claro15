@@ -29,6 +29,11 @@
   background-color: var(--white);
 }
 
+.black {
+  color: var(--white);
+  background-color: var(--black);
+}
+
 .white:hover {
   background-color: var(--umber);
   color: var(--white);
