@@ -2,98 +2,95 @@ import styles from "./ProductMedia.module.css";
 import WixImage from "@/components/WixImage";
 import { products } from "@wix/stores";
 import { useEffect, useState } from "react";
+import Arrow from "../../../../../public/icons/leftArrow.svg";
 
 interface ProductMediaProps {
   media: products.MediaItem[] | undefined;
 }
 
 export default function ProductMedia({ media }: ProductMediaProps) {
-  const [selectedMedia, setSelectedMedia] = useState(media?.[0]);
+  const [selectedMedia, setSelectedMedia] = useState<
+    products.MediaItem | undefined
+  >(media?.[0]);
 
+  // Reset selected media when the `media` prop changes
   useEffect(() => {
-    setSelectedMedia(media?.[0]);
+    if (media?.length) {
+      setSelectedMedia(media[0]);
+    }
   }, [media]);
 
   if (!media?.length) return null;
+
+  const handleNext = () => {
+    if (!selectedMedia || !media?.length) return;
+    const currentIndex = media.findIndex(
+      (item) => item._id === selectedMedia._id
+    );
+    const nextIndex = (currentIndex + 1) % media.length;
+    setSelectedMedia(media[nextIndex]);
+  };
+
+  const handlePrevious = () => {
+    if (!selectedMedia || !media?.length) return;
+    const currentIndex = media.findIndex(
+      (item) => item._id === selectedMedia._id
+    );
+    const previousIndex = (currentIndex - 1 + media.length) % media.length;
+    setSelectedMedia(media[previousIndex]);
+  };
 
   const selectedImage = selectedMedia?.image;
   const selectedVideo = selectedMedia?.video?.files?.[0];
 
   return (
     <div className={styles.container}>
-      {selectedImage?.url ? (
-        <div className={styles.imgContainer}>
+      {/* Display the selected media (image or video) */}
+      <div className={styles.imgContainer}>
+        {selectedImage?.url ? (
           <WixImage
             mediaIdentifier={selectedImage.url}
-            alt={selectedImage.altText}
-            // width={550}
-            // height={550}
+            alt={selectedImage.altText || "Product Image"}
             scaleToFill={false}
             className={styles.img}
           />
-        </div>
-      ) : selectedVideo?.url ? (
-        <div>
-          <video autoPlay loop>
+        ) : selectedVideo?.url ? (
+          <video autoPlay loop controls className={styles.video}>
             <source
               src={selectedVideo.url}
               type={`video/${selectedVideo.format}`}
             />
           </video>
-        </div>
-      ) : null}
-      {media.length > 1 && (
-        <div className={styles.mediaPreviewContainer}>
-          {media.map((mediaItem) => (
-            <MediaPreview
-              key={mediaItem._id}
-              mediaItem={mediaItem}
-              isSelected={mediaItem._id === selectedMedia?._id}
-              onSelect={() => setSelectedMedia(mediaItem)}
+        ) : null}
+
+        {/* Overlay circles representing remaining images */}
+        <div className={styles.circleContainer}>
+          {media.map((_, index) => (
+            <span
+              key={index}
+              className={`${styles.circle} ${
+                media[index]._id === selectedMedia?._id
+                  ? styles.activeCircle
+                  : ""
+              }`}
             />
           ))}
         </div>
-      )}
-    </div>
-  );
-}
 
-interface MediaPreviewProps {
-  mediaItem: products.MediaItem;
-  isSelected: boolean;
-  onSelect: () => void;
-}
-
-function MediaPreview({ mediaItem, isSelected, onSelect }: MediaPreviewProps) {
-  const imageUrl = mediaItem.image?.url;
-  const stillFrameMediaId = mediaItem.video?.stillFrameMediaId;
-  const thumbnailUrl = mediaItem.thumbnail?.url;
-  const resolvedThumbnailUrl =
-    stillFrameMediaId && thumbnailUrl
-      ? thumbnailUrl.split(stillFrameMediaId)[0] + stillFrameMediaId
-      : undefined;
-
-  if (!imageUrl && !resolvedThumbnailUrl) return null;
-
-  return (
-    <div
-      className={`bg-secondary relative cursor-pointer ${
-        isSelected ? "outline-primary outline outline-1" : ""
-      }`}
-    >
-      <WixImage
-        mediaIdentifier={imageUrl || resolvedThumbnailUrl}
-        alt={mediaItem.image?.altText || mediaItem.video?.files?.[0].altText}
-        width={100}
-        height={100}
-        onMouseEnter={onSelect}
-        className={styles.imgii}
-      />
-      {resolvedThumbnailUrl && (
-        <span className='absolute left-1/2 top-1/2 flex size-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/40'>
-          <span className='size-5 text-white/60'>▶️</span>
-        </span>
-      )}
+        {/* Left and Right Navigation Arrows */}
+        <button
+          className={`${styles.arrowButton} ${styles.leftArrow}`}
+          onClick={handlePrevious}
+        >
+          <Arrow className={styles.arrow} />
+        </button>
+        <button
+          className={`${styles.arrowButton} ${styles.rightArrow}`}
+          onClick={handleNext}
+        >
+          <Arrow className={`${styles.arrow} ${styles.arrowReverse}`} />
+        </button>
+      </div>
     </div>
   );
 }

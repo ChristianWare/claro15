@@ -6,37 +6,78 @@
 
 .imgContainer {
   width: 100%;
-  height: 600px;
+  height: 550px;
+  position: relative;
 }
 
-.img,
-.imgii {
-  object-fit: cover;
+.img {
+  object-fit: contain;
   background-color: var(--gray);
   border-radius: 15px;
   width: 100%;
   height: 100%;
-  cursor: pointer;
 }
 
-.imgii {
-  border-radius: 10px;
+.video {
+  object-fit: contain;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
 }
 
-.mediaPreviewContainer {
+.navigationContainer {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
-@media screen and (max-width: 1295px) {
-  .container {
-    flex-direction: column;
-  }
+.arrowButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
 
-  .mediaPreviewContainer {
-    flex-direction: row;
-  }
+.leftArrow {
+  left: 10px;
+}
+
+.rightArrow {
+  right: 10px;
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.arrowReverse {
+  transform: rotate(180deg);
+}
+
+/* Circles to represent remaining images */
+.circleContainer {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  background-color: lightgray;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.activeCircle {
+  background-color: black;
 }

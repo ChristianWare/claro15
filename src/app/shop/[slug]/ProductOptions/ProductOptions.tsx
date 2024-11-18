@@ -16,11 +16,9 @@ export default function ProductOptions({
   return (
     <div className={styles.container}>
       {product.productOptions?.map((option) => (
-        <fieldset key={option.name} className='space-y-1.5'>
-          <legend>
-            <span>{option.name}</span>
-          </legend>
-          <div className='5 flex flex-wrap items-center gap-1'>
+        <fieldset key={option.name} className={styles.fieldset}>
+          {/* <legend>{option.name}</legend> */}
+          <div className={styles.optionContainer}>
             {option.choices?.map((choice) => (
               <div key={choice.description}>
                 <input
@@ -37,32 +35,31 @@ export default function ProductOptions({
                   checked={
                     selectedOptions[option.name || ""] === choice.description
                   }
-                  className='peer hidden'
-                />
-                <label
-                  htmlFor={choice.description}
-                  className={`flex min-w-14 cursor-pointer items-center justify-center gap-1.5 border p-2 peer-checked:border-black ${
-                    checkInStock(product, {
+                  className={styles.radioInput}
+                  disabled={
+                    !checkInStock(product, {
                       ...selectedOptions,
                       [option.name || ""]: choice.description || "",
                     })
-                      ? ""
-                      : "opacity-30"
-                  }`}
+                  }
+                />
+                <label
+                  htmlFor={choice.description}
+                  className={`${styles.radioLabel}`}
                 >
                   {option.optionType === products.OptionType.color && (
                     <span
-                      className='size-4 rounded-full border'
-                      style={{ backgroundColor: choice.value }}
+                      style={{
+                        backgroundColor: choice.value,
+                      }}
                     />
                   )}
-                  <span>{choice.description}</span>
                 </label>
               </div>
             ))}
           </div>
         </fieldset>
-      ))}{" "}
+      ))}
     </div>
   );
 }

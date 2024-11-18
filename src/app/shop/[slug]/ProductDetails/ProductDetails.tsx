@@ -9,7 +9,6 @@ import ProductPrice from "../ProductPrice/ProductPrice";
 import ProductOptions from "../ProductOptions/ProductOptions";
 import AddToCartButton from "@/components/AddToCartButton/AddToCartButton";
 import CollapsibleSection from "@/components/CollapsibleSection/CollapsibleSection";
-// import BuyNowButton from "@/components/BuyNowButton/BuyNowButton";
 
 interface ProductDetailsProps {
   product: products.Product;
@@ -28,6 +27,22 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       }))
       ?.reduce((acc, curr) => ({ ...acc, ...curr }), {}) || {}
   );
+
+  // Filter media based on selected options
+  const getFilteredMedia = () => {
+    const selectedOptionsMedia = product.productOptions?.flatMap((option) => {
+      const selectedChoice = option.choices?.find(
+        (choice) => choice.description === selectedOptions[option.name || ""]
+      );
+      return selectedChoice?.media?.items ?? [];
+    });
+
+    return !!selectedOptionsMedia?.length
+      ? selectedOptionsMedia // Filtered media for selected options
+      : product.media?.items; // Fallback to all media if no specific media
+  };
+
+  const selectedMedia = getFilteredMedia();
 
   const selectedVariant = findVariant(product, selectedOptions);
 
@@ -53,13 +68,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <ProductMedia media={product.media?.items} />
+        <ProductMedia media={selectedMedia} />
       </div>
       <div className={styles.right}>
         <span className={styles.breadcrumbs}>Shop • {product.ribbon}</span>
         <h1 className={styles.heading}>{product.name}</h1>
-        {/* {product.brand && <p>Brand: {product.brand}</p>}
-        {product.ribbon && <p>Ribbon: {product.ribbon}</p>} */}
         <ProductPrice product={product} selectedVariant={selectedVariant} />
         <ProductOptions
           product={product}
@@ -131,22 +144,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               selectedOptions={selectedOptions}
               quantity={quantity}
             />
-            {/* <BuyNowButton
-              product={product}
-              selectedOptions={selectedOptions}
-              quantity={quantity}
-            /> */}
           </div>
         ) : (
-          <button className='flex items-center justify-center rounded-full bg-red-100 p-3 text-xs text-black'>
-            Out of stock
-          </button>
-          // <BackInStockNotificationButton
-          //   product={product}
-          //   selectedOptions={selectedOptions}
-          // />
+          <button className={styles.outOfStockButton}>Out of stock</button>
         )}
-        <div className={styles.CollapsibleSection}>
+
+        <div className={styles.collapsibleSection}>
           <CollapsibleSection
             title='Warranty'
             content='Your investment in CLARO headphones is backed by our unwavering commitment to quality. Every purchase comes with a 90-day warranty, ensuring your audio journey is supported with peace of mind.'
