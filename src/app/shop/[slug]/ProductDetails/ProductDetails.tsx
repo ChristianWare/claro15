@@ -116,38 +116,46 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         />
 
         {inStock ? (
-          <div className={styles.quantityInfoBox}>
-            <div className={styles.quantityInfo}>
-              <div className={styles.quantitySelector}>
-                <button
-                  onClick={decreaseQuantity}
-                  className={styles.quantityButton}
-                >
-                  -
-                </button>
-                <span className={styles.quantityDisplay}>{quantity}</span>
-                <button
-                  onClick={increaseQuantity}
-                  className={styles.quantityButton}
-                >
-                  +
-                </button>
-              </div>
-              {!!availableQuantity &&
+          <>
+            {!!availableQuantity &&
+              (availableQuantityExceeded || availableQuantity < 10) && (
+                <span className={styles.stockWarning}>
+                  Only {availableQuantity} left in stock
+                </span>
+              )}
+            <div className={styles.quantityInfoBox}>
+              <div className={styles.quantityInfo}>
+                <div className={styles.quantitySelector}>
+                  <button
+                    onClick={decreaseQuantity}
+                    className={styles.quantityButton}
+                  >
+                    -
+                  </button>
+                  <span className={styles.quantityDisplay}>{quantity}</span>
+                  <button
+                    onClick={increaseQuantity}
+                    className={styles.quantityButton}
+                  >
+                    +
+                  </button>
+                </div>
+                {/* {!!availableQuantity &&
                 (availableQuantityExceeded || availableQuantity < 10) && (
                   <span className={styles.stockWarning}>
-                    Only {availableQuantity} left in stock
+                  Only {availableQuantity} left in stock
                   </span>
-                )}
+                  )} */}
+              </div>
+              <div className={styles.btnContainer}>
+                <AddToCartButton
+                  product={product}
+                  selectedOptions={selectedOptions}
+                  quantity={quantity}
+                />
+              </div>
             </div>
-            <div className={styles.btnContainer}>
-              <AddToCartButton
-                product={product}
-                selectedOptions={selectedOptions}
-                quantity={quantity}
-              />
-            </div>
-          </div>
+          </>
         ) : (
           <button className={styles.outOfStockButton}>Out of stock</button>
         )}
