@@ -25,8 +25,8 @@ const pretendardLight = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Claro",
-    template: "%s - Claro",
+    default: "CHUXLY",
+    template: "%s - Chuxly",
   },
   description:
     "Our purpose is to redefine the way you experience sound. We are driven by a singular purpose: to elevate your world through the magic of exceptional audio.",

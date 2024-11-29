@@ -11,7 +11,7 @@ const AboutPage = () => {
     <main>
       <PageIntro
         src={AboutImage}
-        eyebrow="Experience the CLARO difference you've been hearing about"
+        eyebrow="Experience the CHUXLY difference you've been hearing about"
         text='Our Vision'
       />
       <AboutPostHero />

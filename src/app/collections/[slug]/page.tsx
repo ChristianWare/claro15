@@ -53,7 +53,7 @@ export default async function Page({ params }: PageProps) {
     <main>
       <PageIntro
         src={banner}
-        eyebrow="Experience the CLARO difference you've been hearing about"
+        eyebrow="Experience the CHUXLY difference you've been hearing about"
         text={categoryName}
       />
       <LayoutWrapper>

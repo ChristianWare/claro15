@@ -163,7 +163,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className={styles.collapsibleSection}>
           <CollapsibleSection
             title='Warranty'
-            content='Your investment in CLARO headphones is backed by our unwavering commitment to quality. Every purchase comes with a 90-day warranty, ensuring your audio journey is supported with peace of mind.'
+            content='Your investment in CHUXLY headphones is backed by our unwavering commitment to quality. Every purchase comes with a 90-day warranty, ensuring your audio journey is supported with peace of mind.'
           />
           <CollapsibleSection
             title='Shipping & delivery'
@@ -171,7 +171,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           />
           <CollapsibleSection
             title='Support'
-            content='Download the CLARO app now – available on Google Play and the Apple Store. For technical support, please visit our Support page.'
+            content='Download the CHUXLY app now – available on Google Play and the Apple Store. For technical support, please visit our Support page.'
           />
         </div>
       </div>

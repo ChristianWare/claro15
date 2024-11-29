@@ -9,14 +9,14 @@ const data = [
     icon: <Person className={styles.icon} />,
     title: "Sales & Inquiries",
     phone: "1800-444-5555",
-    email: "sales@claro.com",
+    email: "sales@chuxly.com",
   },
   {
     id: 1,
     icon: <Headphones className={styles.icon} />,
     title: "Technical support",
     phone: "1800-555-7777",
-    email: "support@claro.com",
+    email: "support@chuxly.com",
   },
 ];
 

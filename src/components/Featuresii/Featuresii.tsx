@@ -17,7 +17,7 @@ const data = [
   {
     id: 1,
     icon: <Phone width={50} height={50} className={styles.icon} />,
-    title: "CLARO app",
+    title: "CHUXLY app",
     text: "Take full control of your music listening experience with dynamic EQ settings.",
   },
   {

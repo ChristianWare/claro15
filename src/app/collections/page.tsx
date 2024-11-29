@@ -8,7 +8,7 @@ export default function page() {
     <main>
       <PageIntro
         src={img}
-        eyebrow="Experience the CLARO difference you've been hearing about"
+        eyebrow="Experience the CHUXLY difference you've been hearing about"
         text='Collections'
       />
       <CollectionGroup />

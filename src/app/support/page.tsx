@@ -9,8 +9,8 @@ const SupportPage = () => {
     <main>
       <PageIntro
         src={SupportImage}
-        eyebrow="Experience the CLARO difference you've been hearing about"
-        text='Reach out to CLARO'
+        eyebrow="Experience the CHUXLY difference you've been hearing about"
+        text='Reach out to CHUXLY'
       />
       <SupportContact />
       <NewFaq />

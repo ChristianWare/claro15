@@ -72,12 +72,12 @@ export default async function Page({ params }: PageProps) {
       <TextImageFlip
         src={FlipOne}
         title='Feel the music, embrace the silence'
-        text="Unlike conventional headphones, CLARO's noise-cancelling technology isn't just about silence; it's about elevating your music to new dimensions. By eliminating external disturbances, every note resonates with crystal clarity, and every beat is felt with deep intensity. With CLARO, you're not just hearing music –– you're experiencing it in its purest form."
+        text="Unlike conventional headphones, CHUXLY's noise-cancelling technology isn't just about silence; it's about elevating your music to new dimensions. By eliminating external disturbances, every note resonates with crystal clarity, and every beat is felt with deep intensity. With CHUXLY, you're not just hearing music –– you're experiencing it in its purest form."
       />
       <TextImageFlip
         src={FlipTwo}
         title='Perfect sound, no strings attached'
-        text="Our CLARO Bluetooth connection gives you the freedom to explore your auditory universe without any constraints. Whether you're tuning into a playlist or diving into a podcast, your listening experience is transformed into a realm of boundless sound, redefining wireless possibilities with every note."
+        text="Our CHUXLY Bluetooth connection gives you the freedom to explore your auditory universe without any constraints. Whether you're tuning into a playlist or diving into a podcast, your listening experience is transformed into a realm of boundless sound, redefining wireless possibilities with every note."
         flip='flip'
       />
       <Witb media={media} itemName={product.name || undefined} />
