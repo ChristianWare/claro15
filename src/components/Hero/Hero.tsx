@@ -29,7 +29,7 @@ const Hero = () => {
             </h1>
             <div className={styles.btnContainer}>
               <Button
-                href=''
+                href='/shop'
                 text='Shop Studio Elite'
                 btnType='white'
                 pulse={true}
