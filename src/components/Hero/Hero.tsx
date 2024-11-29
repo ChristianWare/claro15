@@ -25,7 +25,7 @@ const Hero = () => {
               btnType='white'
             />
             <h1 className={styles.heading}>
-              Immerse yourself in sound <br /> like never before
+              Immerse yourself in sound like never before
             </h1>
             <div className={styles.btnContainer}>
               <Button
@@ -36,6 +36,7 @@ const Hero = () => {
               />
             </div>
           </div>
+          <div className={styles.right}></div>
         </div>
       </section>
     </div>
