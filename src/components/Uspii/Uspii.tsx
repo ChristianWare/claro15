@@ -4,6 +4,7 @@ import Image from "next/image";
 import Headphones from "../../../public/images/headphones.jpg";
 import Earbuds from "../../../public/images/earbuds.jpg";
 import Link from "next/link";
+import Button from "../Button/Button";
 
 const Uspii = () => {
   return (
@@ -25,6 +26,13 @@ const Uspii = () => {
               <p className={styles.text}>Shop headphones</p>
             </div>
           </Link>
+        </div>
+        <div className={styles.btnContainer}>
+          <Button
+            btnType='umber'
+            href='/collections'
+            text='See All Categories'
+          />
         </div>
       </LayoutWrapper>
     </section>

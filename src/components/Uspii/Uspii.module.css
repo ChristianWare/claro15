@@ -30,7 +30,6 @@
   border-radius: 15px;
 }
 
-
 .imgOverlay {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -58,10 +57,13 @@
   letter-spacing: -1.3px;
 }
 
-/* .img {
-  object-fit: cover;
-  border-radius: 15px;
-} */
+.btnContainer {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 @media screen and (max-width: 668px) {
   .content {
@@ -70,5 +72,11 @@
 
   .imgContainer {
     height: 350px;
+  }
+
+  .btnContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
   }
 }

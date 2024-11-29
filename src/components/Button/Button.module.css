@@ -54,6 +54,17 @@
   color: var(--black);
 }
 
+.umber {
+  border: 1px solid var(--umber);
+  background-color: var(--umber);
+  color: var(--white);
+}
+
+.umber:hover {
+  background-color: var(--white);
+  color: var(--umber);
+}
+
 .input {
   background-color: var(--burgundyLight);
   color: var(--white);
