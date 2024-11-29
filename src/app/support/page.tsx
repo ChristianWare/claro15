@@ -3,6 +3,7 @@ import SupportImage from "../../../public/images/support.jpg";
 import SupportContact from "./SupportContact/SupportContact";
 import NewFaq from "@/components/NewFaq/NewFaq";
 import Footer from "@/components/Footer/Footer";
+import FinalCTA from "@/components/FinalCTA/FinalCTA";
 
 const SupportPage = () => {
   return (
@@ -14,6 +15,7 @@ const SupportPage = () => {
       />
       <SupportContact />
       <NewFaq />
+      <FinalCTA />
       <Footer />
     </main>
   );

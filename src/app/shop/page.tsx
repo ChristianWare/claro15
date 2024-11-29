@@ -6,6 +6,7 @@ import { getWixServerClient } from "@/lib/wix-client.server";
 import { getCollections } from "@/wix-api/collections";
 import SearchFilterLayout from "./SearchFilterLayout";
 import LayoutWrapper from "@/components/LayoutWrapper";
+import FinalCTA from "@/components/FinalCTA/FinalCTA";
 // import Nav from "@/components/Nav/Nav";
 // import styles from "./ShopPage.module.css";
 
@@ -43,20 +44,22 @@ export default async function Page({ searchParams }: PageProps) {
   const collections = await getCollections(await getWixServerClient());
 
   return (
-    <LayoutWrapper>
-      <SearchFilterLayout collections={collections}>
-      
-        <Suspense fallback='Loading...' key={`${q}-${page}`}>
-          <ProductResults
-            q={q}
-            page={parseInt(page)}
-            collectionIds={collectionIds}
-            priceMin={price_min ? parseInt(price_min) : undefined}
-            priceMax={price_max ? parseInt(price_max) : undefined}
-            sort={sort as ProductsSort}
-          />
-        </Suspense>
-      </SearchFilterLayout>
-    </LayoutWrapper>
+    <main>
+      <LayoutWrapper>
+        <SearchFilterLayout collections={collections}>
+          <Suspense fallback='Loading...' key={`${q}-${page}`}>
+            <ProductResults
+              q={q}
+              page={parseInt(page)}
+              collectionIds={collectionIds}
+              priceMin={price_min ? parseInt(price_min) : undefined}
+              priceMax={price_max ? parseInt(price_max) : undefined}
+              sort={sort as ProductsSort}
+            />
+          </Suspense>
+        </SearchFilterLayout>
+      </LayoutWrapper>
+      <FinalCTA />
+    </main>
   );
 }
