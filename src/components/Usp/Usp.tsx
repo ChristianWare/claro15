@@ -21,7 +21,12 @@ const Usp = () => {
           </div>
           <div className={styles.bottom}>
             <div className={styles.btnContainer}>
-              <Button href='' text='About CHUXLY' btnType='whiteOutline' />
+              <Button
+                href='/about'
+                text='About CHUXLY'
+                btnType='whiteOutline'
+                pulse={true}
+              />
             </div>{" "}
           </div>
         </div>

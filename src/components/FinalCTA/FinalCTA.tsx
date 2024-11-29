@@ -12,7 +12,12 @@ const FinalCTA = () => {
             hearing about
           </h2>
           <div className={styles.btnContainer}>
-            <Button href='/' text='Find a retailer →' btnType='blackOutline' />
+            <Button
+              href='/shop'
+              text='Shop Now →'
+              btnType='whiteOutline'
+              pulse
+            />
           </div>
         </div>
       </LayoutWrapper>

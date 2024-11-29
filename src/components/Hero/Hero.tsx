@@ -28,7 +28,12 @@ const Hero = () => {
               Hi-fidelity for your <br /> high standards
             </h1>
             <div className={styles.btnContainer}>
-              <Button href='' text='Shop Studio Elite' btnType='white' />
+              <Button
+                href=''
+                text='Shop Studio Elite'
+                btnType='white'
+                pulse={true}
+              />
             </div>
           </div>
         </div>

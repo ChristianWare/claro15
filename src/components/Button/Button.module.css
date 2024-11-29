@@ -42,6 +42,7 @@
 .whiteOutline {
   border: 2px solid var(--white);
   color: var(--white);
+  background-color: var(--umber);
 }
 
 .whiteOutline:hover {
@@ -52,6 +53,23 @@
 .blackOutline {
   border: 2px solid var(--black);
   color: var(--black);
+  background-color: transparent;
+}
+
+/* blackOutline button hover state */
+.blackOutline:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* Default pulsating circle for blackOutline */
+.blackOutline .pulse {
+  background-color: var(--black); /* Black pulse by default */
+}
+
+/* Pulsating circle hover effect for blackOutline */
+.blackOutline:hover .pulse {
+  background-color: var(--white); /* White pulse on hover */
 }
 
 .umber {
@@ -69,4 +87,66 @@
   background-color: var(--burgundyLight);
   color: var(--white);
   padding: 15px;
+}
+/* Default pulsating circle */
+.pulseWrapper:hover .pulse {
+  background-color: var(--white);
+}
+
+.pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--umber);
+  animation: pulse-animation 1.5s infinite;
+  position: relative;
+}
+
+/* Keyframes for pulsating effect */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* White button hover state */
+.white:hover {
+  background-color: var(--umber);
+  color: var(--white);
+}
+
+/* Change pulsating circle color when hovering over the button */
+.white:hover .pulse {
+  background-color: var(--white);
+}
+.whiteOutline {
+  border: 2px solid var(--white);
+  color: var(--white);
+  background-color: var(--umber);
+}
+
+/* WhiteOutline button hover state */
+.whiteOutline:hover {
+  background-color: var(--white);
+  color: var(--umber);
+  border: 2px solid var(--umber);
+}
+
+/* Default pulsating circle for whiteOutline */
+.whiteOutline .pulse {
+  background-color: var(--white); /* White pulse by default */
+}
+
+/* Pulsating circle hover effect for whiteOutline */
+.whiteOutline:hover .pulse {
+  background-color: var(--umber); /* Remains white on hover */
 }

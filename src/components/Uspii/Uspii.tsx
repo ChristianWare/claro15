@@ -29,9 +29,10 @@ const Uspii = () => {
         </div>
         <div className={styles.btnContainer}>
           <Button
-            btnType='umber'
+            btnType='whiteOutline'
             href='/collections'
             text='See All Categories'
+            pulse
           />
         </div>
       </LayoutWrapper>

@@ -17,15 +17,17 @@ const TakeControl = () => {
           <div className={styles.right}>
             <h2 className={styles.heading}>Take control of your music</h2>
             <p className={styles.copy}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              eum unde quae, ab illum quisquam sunt mollitia nemo deserunt eos
-              soluta, sint animi fugiat!
+              The CHUXLY app puts you in complete control of your music
+              experience with customizable EQ settings and seamless integration
+              with Apple Music and Spotify.
             </p>
             <div className={styles.btnContainer}>
               <Button
-                href='/'
+                href='https://www.apple.com/app-store/'
+                target='blank_'
                 text='Download the CHUXLY app →'
                 btnType='blackOutline'
+                pulse
               />
             </div>
           </div>
