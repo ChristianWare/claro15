@@ -8,7 +8,8 @@ const FinalCTA = () => {
       <LayoutWrapper>
         <div className={styles.content}>
           <h2 className={styles.heading}>
-            Experience the CLARO difference you&apos;ve been hearing about
+            Experience the <span>CHUXLY</span> difference you&apos;ve been
+            hearing about
           </h2>
           <div className={styles.btnContainer}>
             <Button href='/' text='Find a retailer →' btnType='blackOutline' />

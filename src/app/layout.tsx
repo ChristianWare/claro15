@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 // import Footer from "@/components/Footer/Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
-
-
-
-const lb = Libre_Baskerville({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--lb",
-});
 
 const pretendard = localFont({
   src: "../../public/fonts/Pretendard.woff2",
@@ -53,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${pretendard.variable} ${lb.variable} ${pretendardMedium.variable} ${pretendardLight.variable}`}
+        className={`${pretendard.variable} ${pretendardMedium.variable} ${pretendardLight.variable}`}
       >
         {/* {children}
         <Footer /> */}

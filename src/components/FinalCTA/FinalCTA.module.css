@@ -11,7 +11,13 @@
 
 .heading {
   text-align: center;
-  width: 50%;
+  width: 60%;
+}
+
+.heading span {
+  letter-spacing: 2px;
+  font-family: var(--pretendard);
+  color: var(--umber);
 }
 
 @media screen and (max-width: 968px) {

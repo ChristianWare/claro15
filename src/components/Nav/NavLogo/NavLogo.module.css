@@ -3,6 +3,7 @@
   display: block !important;
   font-size: 2rem;
   z-index: 1001;
+  letter-spacing: 2px;
 }
 
 .black {

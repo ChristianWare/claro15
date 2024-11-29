@@ -24,7 +24,7 @@ const TakeControl = () => {
             <div className={styles.btnContainer}>
               <Button
                 href='/'
-                text='Download the CLARO app →'
+                text='Download the CHUXLY app →'
                 btnType='blackOutline'
               />
             </div>

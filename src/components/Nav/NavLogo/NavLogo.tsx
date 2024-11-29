@@ -8,7 +8,7 @@ interface NavProps {
 const NavLogo = ({ color = "" }: NavProps) => {
   return (
     <Link href='/' className={`${styles.logo} ${styles[color]}`}>
-      CLARO
+      CHUXLY
     </Link>
   );
 };
