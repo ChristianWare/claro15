@@ -22,6 +22,8 @@
   color: var(--white);
   font-size: 1.8rem;
   letter-spacing: 3.2px;
+  
+  
 }
 
 .heading {
@@ -78,6 +80,7 @@
   letter-spacing: -0.4px;
   color: var(--white);
   list-style: none;
+  text-transform: capitalize;
 }
 
 .bottom {

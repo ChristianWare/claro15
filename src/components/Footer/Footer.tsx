@@ -5,6 +5,7 @@ import Instagram from "../../../public/icons/instagram.svg";
 import Facebook from "../../../public/icons/facebook.svg";
 import LinkedIn from "../../../public/icons/linkedin.svg";
 import Youtube from "../../../public/icons/youtube.svg";
+import Link from "next/link";
 
 const data = [
   {
@@ -12,34 +13,40 @@ const data = [
     section: "Shop",
     options: [
       {
-        id: 1.1,
-        title: "All",
-      },
-      {
         id: 1.2,
-        title: "Headphones",
+        title: "headphones",
+        href: "/collections/headphones",
       },
       {
         id: 1.3,
-        title: "Earbuds",
+        title: "earbuds",
+        href: "/collections/earbuds",
+      },
+      {
+        id: 1.4,
+        title: "soundbars",
+        href: "/collections/soundbars",
+      },
+      {
+        id: 1.5,
+        title: "speakers",
+        href: "/collections/speakers",
       },
     ],
   },
   {
     id: 2,
-    section: "Claro",
+    section: "CHUXLY",
     options: [
       {
         id: 2.1,
-        title: "About",
-      },
-      {
-        id: 2.2,
-        title: "Locations",
+        title: "about",
+        href: "/about",
       },
       {
         id: 2.3,
-        title: "Support",
+        title: "support",
+        href: "/support",
       },
     ],
   },
@@ -76,7 +83,7 @@ const Footer = () => {
       <LayoutWrapper>
         <div className={styles.topContent}>
           <div className={styles.left}>
-            <span className={styles.logo}>CLARO</span>
+            <span className={styles.logo}>CHUXLY</span>
             <h2 className={styles.heading}>
               Join our newsletter and get 15% off your first purchase
             </h2>
@@ -96,9 +103,9 @@ const Footer = () => {
                   <span className={styles.section}>{x.section}</span>
                   <ul className={styles.optionsContainer}>
                     {x.options.map((y) => (
-                      <li className={styles.option} key={y.id}>
-                        {y.title}
-                      </li>
+                      <Link href={y.href} key={y.id}>
+                        <li className={styles.option}>{y.title}</li>
+                      </Link>
                     ))}
                   </ul>
                 </div>
@@ -121,9 +128,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.bottom}>
-          <p className={styles.small}>
-            Purchase CLARO template on Framer Commerce
-          </p>
+          <p className={styles.small}>Copyright &#xA9; 2024 CHUXLY</p>
           <p className={styles.small}>Terms of Use</p>
           <p className={styles.small}>Privcay Policy</p>
         </div>
