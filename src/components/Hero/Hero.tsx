@@ -25,7 +25,7 @@ const Hero = () => {
               btnType='white'
             />
             <h1 className={styles.heading}>
-              Hi-fidelity for your <br /> high standards
+              Immerse yourself in sound <br /> like never before
             </h1>
             <div className={styles.btnContainer}>
               <Button

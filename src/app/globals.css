@@ -5,7 +5,7 @@
   --umber: #cc6b33;
   --burgundy: #361518;
   --burgundyLight: #8b323d;
-  --gray: #F2F2F2;
+  --gray: #f2f2f2;
 }
 
 * {
@@ -158,8 +158,7 @@ textarea:focus {
     font-size: 113.7%;
   }
 
-  h1,
-  .span1 {
+  h1 {
     font-size: 6rem;
     letter-spacing: -0.02em;
   }
@@ -194,13 +193,11 @@ textarea:focus {
 
   h1,
   .span1 {
-    font-size: 5.5rem;
+    font-size: 4rem;
     letter-spacing: -0.02em;
   }
 
-  h2,
-  .h2v2,
-  .h2v3 {
+  h2 {
     font-size: 3rem;
   }
 
@@ -211,14 +208,6 @@ textarea:focus {
     font-size: 2rem;
   }
 
-  /* h2 {
-    font-size: 5.5rem;
-  } */
-  /* 
-  p,
-  label {
-    font-size: 110%;
-  } */
 }
 
 /* .toastFont {
