@@ -27,9 +27,9 @@ export default function AddToCartButton({
         })
       }
       {...props}
-      className={styles.btn}
+      className={`${styles.btn} ${styles.pulseWrapper}`}
     >
-      Add To Cart
+      <span className={styles.pulse}></span> Add To Cart
     </button>
   );
 }
