@@ -18,16 +18,16 @@ export default function ProductPrice({
 
   return (
     <div className={styles.container}>
-      <span
-        className={`${styles.price} ${hasDiscount ? styles.strikethrough : ""}`}
-      >
-        {priceData.formatted?.price}
-      </span>
       {hasDiscount && (
         <span className={styles.discountedPrice}>
           {priceData.formatted?.discountedPrice}
         </span>
       )}
+      <span
+        className={`${styles.price} ${hasDiscount ? styles.strikethrough : ""}`}
+      >
+        {priceData.formatted?.price}
+      </span>
     </div>
   );
 }
