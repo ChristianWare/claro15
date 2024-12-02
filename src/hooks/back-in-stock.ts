@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { wixBrowserClient } from "@/lib/wix-client.browser";
 import {
   BackInStockNotificationRequestValues,

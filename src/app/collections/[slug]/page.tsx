@@ -12,14 +12,14 @@ import VideoUspiii from "@/components/VideoUspiii/VideoUspiii";
 import Footer from "@/components/Footer/Footer";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-// Update generateMetadata to handle params asynchronously
+// Updated generateMetadata function
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await Promise.resolve(params);
+  const { slug } = await params; // Await the params to access the slug
   const collection = await getCollectionBySlug(
     await getWixServerClient(),
     slug
@@ -38,8 +38,9 @@ export async function generateMetadata({
   };
 }
 
+// Updated Page component
 export default async function Page({ params }: PageProps) {
-  const { slug } = await Promise.resolve(params); // Await params before destructuring
+  const { slug } = await params; // Await the params to access the slug
   const collection = await getCollectionBySlug(
     await getWixServerClient(),
     slug
@@ -49,6 +50,7 @@ export default async function Page({ params }: PageProps) {
 
   const banner = collection.media?.mainMedia?.image?.url || "";
   const categoryName = collection.name || "Category";
+
   return (
     <main>
       <PageIntro
@@ -74,6 +76,7 @@ interface ProductProps {
   collectionId: string;
 }
 
+// Updated Products component
 async function Products({ collectionId }: ProductProps) {
   const collectionProducts = await queryProducts(await getWixServerClient(), {
     collectionIds: collectionId,

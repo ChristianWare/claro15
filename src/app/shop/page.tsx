@@ -7,29 +7,30 @@ import { getCollections } from "@/wix-api/collections";
 import SearchFilterLayout from "./SearchFilterLayout";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import FinalCTA from "@/components/FinalCTA/FinalCTA";
-// import Nav from "@/components/Nav/Nav";
-// import styles from "./ShopPage.module.css";
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
     page?: string;
     collection?: string[];
     price_min?: string;
     price_max?: string;
     sort?: string;
-  };
+  }>;
 }
 
+// Updated generateMetadata
 export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const { q } = await Promise.resolve(searchParams);
+  const { q } = await searchParams; // Await the searchParams
+
   return {
     title: q ? `Results for "${q}"` : "Products",
   };
 }
 
+// Updated Page Component
 export default async function Page({ searchParams }: PageProps) {
   const {
     q,
@@ -38,7 +39,7 @@ export default async function Page({ searchParams }: PageProps) {
     price_min,
     price_max,
     sort,
-  } = await Promise.resolve(searchParams);
+  } = await searchParams; // Await the searchParams
 
   // Fetch collections
   const collections = await getCollections(await getWixServerClient());
