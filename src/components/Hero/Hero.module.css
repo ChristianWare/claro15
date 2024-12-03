@@ -55,7 +55,7 @@
   padding: 2rem;
   border: 1px solid var(--umber);
   flex: 1;
-  will-change: transform, opacity; 
+  will-change: transform, opacity;
 }
 
 .right {
@@ -106,16 +106,6 @@
 @media screen and (max-width: 568px) {
   .parent {
     height: 100vh;
-  }
-
-  .actualContent {
-    gap: 2rem;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  .heading {
-    text-align: left;
   }
 
   .content {
