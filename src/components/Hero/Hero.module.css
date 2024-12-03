@@ -7,7 +7,6 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  /* font-size: 0; */
 }
 
 .imgOverlay {
@@ -18,12 +17,13 @@
   bottom: 0;
   left: 0;
   height: 100%;
-  border: 1px solid var(--blackiv);
   z-index: 1;
 }
 
 .img {
   position: absolute;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -49,12 +49,13 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 3rem;
+  gap: 2rem;
   backdrop-filter: blur(15px);
   border-radius: 15px;
-  padding: 3rem;
+  padding: 2rem;
   border: 1px solid var(--umber);
   flex: 1;
+  will-change: transform, opacity; 
 }
 
 .right {
@@ -71,12 +72,11 @@
 }
 
 @media screen and (max-width: 968px) {
-
-.content, .actualContent {
-  
-  align-items: center;
-  justify-content: center;
-}
+  .content,
+  .actualContent {
+    align-items: center;
+    justify-content: center;
+  }
 
   .heading {
     text-align: center;

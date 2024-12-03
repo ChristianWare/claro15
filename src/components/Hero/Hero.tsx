@@ -17,7 +17,13 @@ const Hero = () => {
             <Nav />
           </ContentPadding>
         </div>
-        <Image src={HeroImage} alt='hero' fill className={styles.img} />
+        <Image
+          src={HeroImage}
+          alt='hero'
+          fill
+          className={styles.img}
+          priority
+        />
         <div className={styles.content}>
           <div className={styles.actualContent}>
             <Eyebrow
