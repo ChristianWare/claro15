@@ -4,6 +4,7 @@ import "./globals.css";
 // import Footer from "@/components/Footer/Footer";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { Toaster } from "react-hot-toast";
+import Head from "next/head";
 
 const pretendard = localFont({
   src: "../../public/fonts/Pretendard.woff2",
@@ -47,6 +48,15 @@ export default function RootLayout({
       >
         {/* {children}
         <Footer /> */}
+        <Head>
+          <link
+            rel='preload'
+            as='image'
+            href='/images/herov.jpg'
+            type='image/webp'
+            media='(max-width: 768px)'
+          />
+        </Head>
         <ReactQueryProvider>
           <Toaster
             position='top-center'
