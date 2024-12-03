@@ -25,7 +25,7 @@ export default function UserButton({
     <div className={`${styles.container} ${styles[color]}`}>
       <button
         // onClick={() => login()}
-        onClick={() => setSheetOpen(true)}
+        // onClick={() => setSheetOpen(true)}
         className={`${styles[color]}`}
       >
         <Person className={`${styles.icon} ${styles[color]}`} />
